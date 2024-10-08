@@ -4,9 +4,9 @@ import {
   PositionType,
   ProtocolDetails,
 } from '../../../../types/adapter'
-import { MorphoBluePoolAdapter } from '../../common/morphoBluePoolAdapter'
+import { LQGBluePoolAdapter } from '../../common/LQGBluePoolAdapter'
 
-export class MorphoBlueMarketSupplyAdapter extends MorphoBluePoolAdapter {
+export class LQGBlueMarketSupplyAdapter extends LQGBluePoolAdapter {
   productId = 'market-supply'
 
   adapterSettings = {
@@ -17,10 +17,10 @@ export class MorphoBlueMarketSupplyAdapter extends MorphoBluePoolAdapter {
   getProtocolDetails(): ProtocolDetails {
     return {
       protocolId: this.protocolId,
-      name: 'MorphoBlue Supply',
-      description: 'Morpho Blue DeFi adapter on the supply side',
-      siteUrl: 'https://app.morpho.org/',
-      iconUrl: 'https://cdn.morpho.org/images/v2/morpho/favicon.png',
+      name: 'LQGBlue Supply',
+      description: 'LQG Blue DeFi adapter on the supply side',
+      siteUrl: 'https://app.LQG.org/',
+      iconUrl: 'https://cdn.LQG.org/images/v2/LQG/favicon.png',
       positionType: PositionType.Supply,
       chainId: this.chainId,
       productId: this.productId,

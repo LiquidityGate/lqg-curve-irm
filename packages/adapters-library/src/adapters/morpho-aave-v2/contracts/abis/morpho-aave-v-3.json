@@ -16,12 +16,12 @@
   },
   {
     "inputs": [],
-    "name": "AssetIsCollateralOnMorpho",
+    "name": "AssetIsCollateralOnLQG",
     "type": "error"
   },
   {
     "inputs": [],
-    "name": "AssetNotCollateralOnMorpho",
+    "name": "AssetNotCollateralOnLQG",
     "type": "error"
   },
   {

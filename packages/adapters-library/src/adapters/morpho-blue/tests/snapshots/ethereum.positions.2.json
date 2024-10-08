@@ -14,11 +14,11 @@
   ],
   "snapshot": [
     {
-      "protocolId": "morpho-blue",
-      "name": "MorphoBlue Supply",
-      "description": "Morpho Blue DeFi adapter on the supply side",
-      "siteUrl": "https://app.morpho.org/",
-      "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+      "protocolId": "LQG-blue",
+      "name": "LQGBlue Supply",
+      "description": "LQG Blue DeFi adapter on the supply side",
+      "siteUrl": "https://app.LQG.org/",
+      "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
       "positionType": "supply",
       "chainId": 1,
       "productId": "market-supply",
@@ -202,11 +202,11 @@
       ]
     },
     {
-      "protocolId": "morpho-blue",
-      "name": "MorphoBlue Borrow",
-      "description": "Morpho Blue DeFi adapter on the borrow side",
-      "siteUrl": "https://app.morpho.org/",
-      "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+      "protocolId": "LQG-blue",
+      "name": "LQGBlue Borrow",
+      "description": "LQG Blue DeFi adapter on the borrow side",
+      "siteUrl": "https://app.LQG.org/",
+      "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
       "positionType": "borrow",
       "chainId": 1,
       "productId": "market-borrow",

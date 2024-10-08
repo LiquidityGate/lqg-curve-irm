@@ -4,9 +4,9 @@
 
 import { Contract, Interface, type ContractRunner } from "ethers";
 import type {
-  MorphoCompoundLens,
-  MorphoCompoundLensInterface,
-} from "../MorphoCompoundLens";
+  LQGCompoundLens,
+  LQGCompoundLensInterface,
+} from "../LQGCompoundLens";
 
 const _abi = [
   {
@@ -1073,7 +1073,7 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_morphoAddress",
+        name: "_LQGAddress",
         type: "address",
       },
     ],
@@ -1165,10 +1165,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "morpho",
+    name: "LQG",
     outputs: [
       {
-        internalType: "contract IMorpho",
+        internalType: "contract ILQG",
         name: "",
         type: "address",
       },
@@ -1191,15 +1191,15 @@ const _abi = [
   },
 ] as const;
 
-export class MorphoCompoundLens__factory {
+export class LQGCompoundLens__factory {
   static readonly abi = _abi;
-  static createInterface(): MorphoCompoundLensInterface {
-    return new Interface(_abi) as MorphoCompoundLensInterface;
+  static createInterface(): LQGCompoundLensInterface {
+    return new Interface(_abi) as LQGCompoundLensInterface;
   }
   static connect(
     address: string,
     runner?: ContractRunner | null
-  ): MorphoCompoundLens {
-    return new Contract(address, _abi, runner) as unknown as MorphoCompoundLens;
+  ): LQGCompoundLens {
+    return new Contract(address, _abi, runner) as unknown as LQGCompoundLens;
   }
 }

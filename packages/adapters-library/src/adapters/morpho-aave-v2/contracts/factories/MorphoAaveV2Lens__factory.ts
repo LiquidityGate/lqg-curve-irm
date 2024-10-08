@@ -4,16 +4,16 @@
 
 import { Contract, Interface, type ContractRunner } from "ethers";
 import type {
-  MorphoAaveV2Lens,
-  MorphoAaveV2LensInterface,
-} from "../MorphoAaveV2Lens";
+  LQGAaveV2Lens,
+  LQGAaveV2LensInterface,
+} from "../LQGAaveV2Lens";
 
 const _abi = [
   {
     inputs: [
       {
         internalType: "address",
-        name: "_morpho",
+        name: "_LQG",
         type: "address",
       },
     ],
@@ -1247,10 +1247,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "morpho",
+    name: "LQG",
     outputs: [
       {
-        internalType: "contract IMorpho",
+        internalType: "contract ILQG",
         name: "",
         type: "address",
       },
@@ -1273,15 +1273,15 @@ const _abi = [
   },
 ] as const;
 
-export class MorphoAaveV2Lens__factory {
+export class LQGAaveV2Lens__factory {
   static readonly abi = _abi;
-  static createInterface(): MorphoAaveV2LensInterface {
-    return new Interface(_abi) as MorphoAaveV2LensInterface;
+  static createInterface(): LQGAaveV2LensInterface {
+    return new Interface(_abi) as LQGAaveV2LensInterface;
   }
   static connect(
     address: string,
     runner?: ContractRunner | null
-  ): MorphoAaveV2Lens {
-    return new Contract(address, _abi, runner) as unknown as MorphoAaveV2Lens;
+  ): LQGAaveV2Lens {
+    return new Contract(address, _abi, runner) as unknown as LQGAaveV2Lens;
   }
 }

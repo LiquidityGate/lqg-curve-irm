@@ -24,13 +24,13 @@ import {
 } from '../../../../types/adapter'
 import { Erc20Metadata } from '../../../../types/erc20Metadata'
 import { Protocol } from '../../../protocols'
-import { Metamorpho__factory, Metamorphofactory__factory } from '../../contracts'
+import { MetaLQG__factory, MetaLQGfactory__factory } from '../../contracts'
 import { getTokenMetadata } from '../../../../core/utils/getTokenMetadata'
 import { TypedContractEvent, TypedDeferredTopicFilter } from '../../contracts/common'
 import { Erc20__factory } from '../../../../contracts'
 import { filterMapAsync } from '../../../../core/utils/filters'
 
-type MetaMorphoVaultMetadata = Record<
+type MetaLQGVaultMetadata = Record<
   string,
   {
     protocolToken: Erc20Metadata
@@ -38,16 +38,16 @@ type MetaMorphoVaultMetadata = Record<
   }
 >
 
-const metaMorphoFactoryContractAddresses: Partial<
+const metaLQGFactoryContractAddresses: Partial<
   Record<Protocol, Partial<Record<Chain, string>>>
 > = {
-  [Protocol.MorphoBlue]: {
+  [Protocol.LQGBlue]: {
     [Chain.Ethereum]: '0xA9c3D3a366466Fa809d1Ae982Fb2c46E5fC41101',
     [Chain.Base]: '0xA9c3D3a366466Fa809d1Ae982Fb2c46E5fC41101',
   },
 }
 
-export class MorphoBlueVaultAdapter
+export class LQGBlueVaultAdapter
   implements IProtocolAdapter, IMetadataBuilder
 {
   productId = 'vault'
@@ -81,10 +81,10 @@ export class MorphoBlueVaultAdapter
   getProtocolDetails(): ProtocolDetails {
     return {
       protocolId: this.protocolId,
-      name: 'MetaMorpho Vaults',
-      description: 'MetaMorpho Vaults adapter',
-      siteUrl: 'https://app.morpho.org/',
-      iconUrl: 'https://cdn.morpho.org/images/v2/morpho/favicon.png',
+      name: 'MetaLQG Vaults',
+      description: 'MetaLQG Vaults adapter',
+      siteUrl: 'https://app.LQG.org/',
+      iconUrl: 'https://cdn.LQG.org/images/v2/LQG/favicon.png',
       positionType: PositionType.Supply,
       chainId: this.chainId,
       productId: this.productId,
@@ -92,24 +92,24 @@ export class MorphoBlueVaultAdapter
   }
 
   @CacheToFile({ fileKey: 'protocol-token' })
-  async buildMetadata(): Promise<MetaMorphoVaultMetadata> {
-    const metaMorphoFactoryContract = Metamorphofactory__factory.connect(
-      metaMorphoFactoryContractAddresses[this.protocolId]![this.chainId]!,
+  async buildMetadata(): Promise<MetaLQGVaultMetadata> {
+    const metaLQGFactoryContract = MetaLQGfactory__factory.connect(
+      metaLQGFactoryContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
-    const createMetaMorphoFilter = metaMorphoFactoryContract.filters.CreateMetaMorpho()
+    const createMetaLQGFilter = metaLQGFactoryContract.filters.CreateMetaLQG()
 
-    const metaMorphoVaults = (
-      await metaMorphoFactoryContract.queryFilter(createMetaMorphoFilter, 0, 'latest')
+    const metaLQGVaults = (
+      await metaLQGFactoryContract.queryFilter(createMetaLQGFilter, 0, 'latest')
     ).map((event) => ({
       vault: event.args[0],
       underlyingAsset: event.args[4]
     }))
 
-    const metadataObject: MetaMorphoVaultMetadata = {}
+    const metadataObject: MetaLQGVaultMetadata = {}
 
     await Promise.all(
-      metaMorphoVaults.map(async ({ vault, underlyingAsset }) => {
+      metaLQGVaults.map(async ({ vault, underlyingAsset }) => {
         const [vaultData, underlyingTokenData] = await Promise.all([
           getTokenMetadata(
             vault,
@@ -157,7 +157,7 @@ export class MorphoBlueVaultAdapter
     await Promise.all(
       filteredTokens.map(async (protocolToken) => {
         const underlyingToken = await this.getUnderlyingToken(protocolToken.address);
-        const metaMorphoContract = Metamorpho__factory.connect(
+        const metaLQGContract = MetaLQG__factory.connect(
           protocolToken.address,
           this.provider
         )
@@ -167,8 +167,8 @@ export class MorphoBlueVaultAdapter
         )
   
         const[balanceRaw, vaultDecimal, assetDecimals] = await Promise.all([
-          metaMorphoContract.balanceOf(userAddress, { blockTag: blockNumber }),
-          metaMorphoContract.decimals(),
+          metaLQGContract.balanceOf(userAddress, { blockTag: blockNumber }),
+          metaLQGContract.decimals(),
           underlyingAssetContract.decimals()
         ])
 
@@ -210,7 +210,7 @@ export class MorphoBlueVaultAdapter
           fromBlock,
           toBlock,
           eventType: 'withdraw',
-          metaMorphoVault: protocolTokenAddress,
+          metaLQGVault: protocolTokenAddress,
         })
       ])
     ).flat()
@@ -229,7 +229,7 @@ export class MorphoBlueVaultAdapter
           fromBlock,
           toBlock,
           eventType: 'deposit',
-          metaMorphoVault: protocolTokenAddress,
+          metaLQGVault: protocolTokenAddress,
         })
       ])
     ).flat()
@@ -250,7 +250,7 @@ export class MorphoBlueVaultAdapter
 
       const underlyingToken = await this.getUnderlyingToken(protocolToken.address)
 
-      const protocolTokenContact = Metamorpho__factory.connect(
+      const protocolTokenContact = MetaLQG__factory.connect(
         protocolToken.address,
         this.provider,
       )
@@ -316,40 +316,40 @@ export class MorphoBlueVaultAdapter
     fromBlock,
     toBlock,
     eventType,
-    metaMorphoVault,
+    metaLQGVault,
   }: {
     userAddress: string
 
     fromBlock: number
     toBlock: number
     eventType: 'deposit' | 'withdraw'
-    metaMorphoVault: string
+    metaLQGVault: string
   }): Promise<MovementsByBlock[]> {
 
-    const metaMorphoContract = Metamorpho__factory.connect(
-      metaMorphoVault,
+    const metaLQGContract = MetaLQG__factory.connect(
+      metaLQGVault,
       this.provider,
     )
 
     const [protocolToken, underlyingToken] = await Promise.all(
       [
-      this.getProtocolToken(metaMorphoVault), 
-      this.getUnderlyingToken(metaMorphoVault)
+      this.getProtocolToken(metaLQGVault), 
+      this.getUnderlyingToken(metaLQGVault)
     ]
     )
     let filter: TypedDeferredTopicFilter<TypedContractEvent<any, any, any>>
 
     switch (eventType) {
       case 'deposit':
-        filter = metaMorphoContract.filters.Deposit(undefined, userAddress)
+        filter = metaLQGContract.filters.Deposit(undefined, userAddress)
         break
       case 'withdraw':
-        filter = metaMorphoContract.filters.Withdraw(undefined, undefined, userAddress)
+        filter = metaLQGContract.filters.Withdraw(undefined, undefined, userAddress)
         break
     }
 
 
-    const eventResults = await metaMorphoContract.queryFilter(
+    const eventResults = await metaLQGContract.queryFilter(
       filter,
       fromBlock,
       toBlock,

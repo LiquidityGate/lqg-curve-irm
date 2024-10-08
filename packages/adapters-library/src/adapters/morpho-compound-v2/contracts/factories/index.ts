@@ -2,5 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export { CToken__factory } from "./CToken__factory";
-export { MorphoCompound__factory } from "./MorphoCompound__factory";
-export { MorphoCompoundLens__factory } from "./MorphoCompoundLens__factory";
+export { LQGCompound__factory } from "./LQGCompound__factory";
+export { LQGCompoundLens__factory } from "./LQGCompoundLens__factory";

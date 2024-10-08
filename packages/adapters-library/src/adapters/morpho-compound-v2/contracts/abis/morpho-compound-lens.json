@@ -1063,7 +1063,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_morphoAddress",
+        "name": "_LQGAddress",
         "type": "address"
       }
     ],
@@ -1155,10 +1155,10 @@
   },
   {
     "inputs": [],
-    "name": "morpho",
+    "name": "LQG",
     "outputs": [
       {
-        "internalType": "contract IMorpho",
+        "internalType": "contract ILQG",
         "name": "",
         "type": "address"
       }

@@ -27,16 +27,16 @@ import { Erc20Metadata } from '../../../types/erc20Metadata'
 import { Protocol } from '../../protocols'
 import {
   AToken__factory,
-  MorphoAaveV2Lens__factory,
-  MorphoAaveV2__factory,
+  LQGAaveV2Lens__factory,
+  LQGAaveV2__factory,
 } from '../contracts'
-import { SuppliedEvent } from '../contracts/MorphoAaveV2'
+import { SuppliedEvent } from '../contracts/LQGAaveV2'
 import {
   TypedContractEvent,
   TypedDeferredTopicFilter,
 } from '../contracts/common'
 
-type MorphoAaveV2PeerToPoolAdapterMetadata = Record<
+type LQGAaveV2PeerToPoolAdapterMetadata = Record<
   string,
   {
     protocolToken: Erc20Metadata
@@ -44,15 +44,15 @@ type MorphoAaveV2PeerToPoolAdapterMetadata = Record<
   }
 >
 
-const morphoAaveV2ContractAddresses: Partial<
+const LQGAaveV2ContractAddresses: Partial<
   Record<Protocol, Partial<Record<Chain, string>>>
 > = {
-  [Protocol.MorphoAaveV2]: {
+  [Protocol.LQGAaveV2]: {
     [Chain.Ethereum]: getAddress('0x777777c9898d384f785ee44acfe945efdff5f3e0'),
   },
 }
 
-export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
+export abstract class LQGBasePoolAdapter implements IMetadataBuilder {
   protocolId: Protocol
   chainId: Chain
 
@@ -77,14 +77,14 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
   abstract getProtocolDetails(): ProtocolDetails
 
   async buildMetadata() {
-    const morphoAaveV2Contract = MorphoAaveV2__factory.connect(
-      morphoAaveV2ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGAaveV2Contract = LQGAaveV2__factory.connect(
+      LQGAaveV2ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
-    const metadataObject: MorphoAaveV2PeerToPoolAdapterMetadata = {}
+    const metadataObject: LQGAaveV2PeerToPoolAdapterMetadata = {}
 
-    const markets = await morphoAaveV2Contract.getMarketsCreated()
+    const markets = await LQGAaveV2Contract.getMarketsCreated()
 
     await Promise.all(
       markets.map(async (marketAddress) => {
@@ -174,7 +174,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     userAddress,
     blockNumber,
   }: GetPositionsInput): Promise<ProtocolPosition[]> {
-    const lensContract = MorphoAaveV2Lens__factory.connect(
+    const lensContract = LQGAaveV2Lens__factory.connect(
       this.lensAddress,
       this.provider,
     )
@@ -315,7 +315,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     blockNumber,
   }: GetTotalValueLockedInput): Promise<ProtocolTokenTvl[]> {
     const tokens = await this.getProtocolTokens()
-    const lensContract = MorphoAaveV2Lens__factory.connect(
+    const lensContract = LQGAaveV2Lens__factory.connect(
       this.lensAddress,
       this.provider,
     )
@@ -365,11 +365,11 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     toBlock: number
     eventType: 'supplied' | 'withdrawn' | 'repaid' | 'borrowed'
   }): Promise<MovementsByBlock[]> {
-    const morphoProxy =
-      morphoAaveV2ContractAddresses[this.protocolId]![this.chainId]!
+    const LQGProxy =
+      LQGAaveV2ContractAddresses[this.protocolId]![this.chainId]!
 
-    const morphoAaveV2Contract = MorphoAaveV2__factory.connect(
-      morphoProxy,
+    const LQGAaveV2Contract = LQGAaveV2__factory.connect(
+      LQGProxy,
       this.provider,
     )
 
@@ -382,35 +382,35 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     >
     switch (eventType) {
       case 'supplied':
-        filter = morphoAaveV2Contract.filters.Supplied(
+        filter = LQGAaveV2Contract.filters.Supplied(
           undefined,
           userAddress,
           protocolTokenAddress,
         )
         break
       case 'withdrawn':
-        filter = morphoAaveV2Contract.filters.Withdrawn(
+        filter = LQGAaveV2Contract.filters.Withdrawn(
           undefined,
           userAddress,
           protocolTokenAddress,
         )
         break
       case 'repaid':
-        filter = morphoAaveV2Contract.filters.Repaid(
+        filter = LQGAaveV2Contract.filters.Repaid(
           undefined,
           userAddress,
           protocolTokenAddress,
         )
         break
       case 'borrowed':
-        filter = morphoAaveV2Contract.filters.Borrowed(
+        filter = LQGAaveV2Contract.filters.Borrowed(
           userAddress,
           protocolTokenAddress,
         )
         break
     }
 
-    const eventResults = await morphoAaveV2Contract.queryFilter(
+    const eventResults = await LQGAaveV2Contract.queryFilter(
       filter,
       fromBlock,
       toBlock,
@@ -486,7 +486,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //   protocolTokenAddress,
 //   blockNumber,
 // }: GetAprInput): Promise<number> {
-//   const lensContract = MorphoAaveV2Lens__factory.connect(
+//   const lensContract = LQGAaveV2Lens__factory.connect(
 //     this.lensAddress,
 //     this.provider,
 //   )

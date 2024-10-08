@@ -49,7 +49,7 @@ export declare namespace Types {
   ] & { reserveFactor: bigint; p2pIndexCursor: bigint };
 }
 
-export interface MorphoCompoundInterface extends Interface {
+export interface LQGCompoundInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "CTOKEN_DECIMALS"
@@ -1287,11 +1287,11 @@ export namespace TreasuryVaultSetEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface MorphoCompound extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoCompound;
+export interface LQGCompound extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGCompound;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoCompoundInterface;
+  interface: LQGCompoundInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -1363,7 +1363,7 @@ export interface MorphoCompound extends BaseContract {
   cEth: TypedContractMethod<[], [string], "view">;
 
   claimRewards: TypedContractMethod<
-    [_cTokenAddresses: AddressLike[], _tradeForMorphoToken: boolean],
+    [_cTokenAddresses: AddressLike[], _tradeForLQGToken: boolean],
     [void],
     "nonpayable"
   >;
@@ -1756,7 +1756,7 @@ export interface MorphoCompound extends BaseContract {
   getFunction(
     nameOrSignature: "claimRewards"
   ): TypedContractMethod<
-    [_cTokenAddresses: AddressLike[], _tradeForMorphoToken: boolean],
+    [_cTokenAddresses: AddressLike[], _tradeForLQGToken: boolean],
     [void],
     "nonpayable"
   >;

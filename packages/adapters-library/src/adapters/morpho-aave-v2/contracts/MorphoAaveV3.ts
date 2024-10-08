@@ -204,7 +204,7 @@ export declare namespace Types {
   };
 }
 
-export interface MorphoAaveV3Interface extends Interface {
+export interface LQGAaveV3Interface extends Interface {
   getFunction(
     nameOrSignature:
       | "DOMAIN_SEPARATOR"
@@ -1611,11 +1611,11 @@ export namespace WithdrawnEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface MorphoAaveV3 extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoAaveV3;
+export interface LQGAaveV3 extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGAaveV3;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoAaveV3Interface;
+  interface: LQGAaveV3Interface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,

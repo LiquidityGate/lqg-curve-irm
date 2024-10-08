@@ -100,7 +100,7 @@
   "0x19f91632ba0367cD7B1fc8816071cB31519e5d8a": {
     "protocolToken": {
       "address": "0x19f91632ba0367cD7B1fc8816071cB31519e5d8a",
-      "name": "testMorphoVault",
+      "name": "testLQGVault",
       "symbol": "testMM",
       "decimals": 18
     },
@@ -450,7 +450,7 @@
   "0x2a79E2c69ff4d3a50BF335153e4c09Fa360F3386": {
     "protocolToken": {
       "address": "0x2a79E2c69ff4d3a50BF335153e4c09Fa360F3386",
-      "name": "Morpho USD0",
+      "name": "LQG USD0",
       "symbol": "mUSD0",
       "decimals": 18
     },
@@ -464,7 +464,7 @@
   "0x4F460bb11cf958606C69A963B4A17f9DaEEea8b6": {
     "protocolToken": {
       "address": "0x4F460bb11cf958606C69A963B4A17f9DaEEea8b6",
-      "name": "f(x) Protocol Morpho USDC",
+      "name": "f(x) Protocol LQG USDC",
       "symbol": "fxUSDC",
       "decimals": 18
     },

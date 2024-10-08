@@ -4,16 +4,16 @@
 
 import { Contract, Interface, type ContractRunner } from "ethers";
 import type {
-  Metamorphofactory,
-  MetamorphofactoryInterface,
-} from "../Metamorphofactory";
+  MetaLQGfactory,
+  MetaLQGfactoryInterface,
+} from "../MetaLQGfactory";
 
 const _abi = [
   {
     inputs: [
       {
         internalType: "address",
-        name: "morpho",
+        name: "LQG",
         type: "address",
       },
     ],
@@ -31,7 +31,7 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
-        name: "metaMorpho",
+        name: "metaLQG",
         type: "address",
       },
       {
@@ -77,12 +77,12 @@ const _abi = [
         type: "bytes32",
       },
     ],
-    name: "CreateMetaMorpho",
+    name: "CreateMetaLQG",
     type: "event",
   },
   {
     inputs: [],
-    name: "MORPHO",
+    name: "LQG",
     outputs: [
       {
         internalType: "address",
@@ -126,11 +126,11 @@ const _abi = [
         type: "bytes32",
       },
     ],
-    name: "createMetaMorpho",
+    name: "createMetaLQG",
     outputs: [
       {
-        internalType: "contract IMetaMorpho",
-        name: "metaMorpho",
+        internalType: "contract IMetaLQG",
+        name: "metaLQG",
         type: "address",
       },
     ],
@@ -145,7 +145,7 @@ const _abi = [
         type: "address",
       },
     ],
-    name: "isMetaMorpho",
+    name: "isMetaLQG",
     outputs: [
       {
         internalType: "bool",
@@ -158,15 +158,15 @@ const _abi = [
   },
 ] as const;
 
-export class Metamorphofactory__factory {
+export class MetaLQGfactory__factory {
   static readonly abi = _abi;
-  static createInterface(): MetamorphofactoryInterface {
-    return new Interface(_abi) as MetamorphofactoryInterface;
+  static createInterface(): MetaLQGfactoryInterface {
+    return new Interface(_abi) as MetaLQGfactoryInterface;
   }
   static connect(
     address: string,
     runner?: ContractRunner | null
-  ): Metamorphofactory {
-    return new Contract(address, _abi, runner) as unknown as Metamorphofactory;
+  ): MetaLQGfactory {
+    return new Contract(address, _abi, runner) as unknown as MetaLQGfactory;
   }
 }

@@ -3,11 +3,11 @@
   "aggregatedValues": ["USD3,393,364.59", "USD4,929,252.78", "USD1.20"],
   "snapshot": [
     {
-      "protocolId": "morpho-aave-v2",
-      "name": "MorphoAaveV2",
-      "description": "MorphoAaveV2 defi adapter on the borrow side",
-      "siteUrl": "https://aavev2.morpho.org/",
-      "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+      "protocolId": "LQG-aave-v2",
+      "name": "LQGAaveV2",
+      "description": "LQGAaveV2 defi adapter on the borrow side",
+      "siteUrl": "https://aavev2.LQG.org/",
+      "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
       "positionType": "borrow",
       "chainId": 1,
       "productId": "optimizer-borrow",
@@ -38,11 +38,11 @@
       ]
     },
     {
-      "protocolId": "morpho-aave-v2",
-      "name": "MorphoAaveV2",
-      "description": "MorphoAaveV2 defi adapter on the supply side",
-      "siteUrl": "https://aavev2.morpho.org/",
-      "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+      "protocolId": "LQG-aave-v2",
+      "name": "LQGAaveV2",
+      "description": "LQGAaveV2 defi adapter on the supply side",
+      "siteUrl": "https://aavev2.LQG.org/",
+      "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
       "positionType": "supply",
       "chainId": 1,
       "productId": "optimizer-supply",

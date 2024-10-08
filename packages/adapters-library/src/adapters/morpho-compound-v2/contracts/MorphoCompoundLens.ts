@@ -45,7 +45,7 @@ export declare namespace Types {
   };
 }
 
-export interface MorphoCompoundLensInterface extends Interface {
+export interface LQGCompoundLensInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "MAX_BASIS_POINTS"
@@ -89,7 +89,7 @@ export interface MorphoCompoundLensInterface extends Interface {
       | "isMarketCreated"
       | "isMarketCreatedAndNotPaused"
       | "isMarketCreatedAndNotPausedNorPartiallyPaused"
-      | "morpho"
+      | "LQG"
       | "rewardsManager"
   ): FunctionFragment;
 
@@ -254,7 +254,7 @@ export interface MorphoCompoundLensInterface extends Interface {
     functionFragment: "isMarketCreatedAndNotPausedNorPartiallyPaused",
     values: [AddressLike]
   ): string;
-  encodeFunctionData(functionFragment: "morpho", values?: undefined): string;
+  encodeFunctionData(functionFragment: "LQG", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "rewardsManager",
     values?: undefined
@@ -415,18 +415,18 @@ export interface MorphoCompoundLensInterface extends Interface {
     functionFragment: "isMarketCreatedAndNotPausedNorPartiallyPaused",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "morpho", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "LQG", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "rewardsManager",
     data: BytesLike
   ): Result;
 }
 
-export interface MorphoCompoundLens extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoCompoundLens;
+export interface LQGCompoundLens extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGCompoundLens;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoCompoundLensInterface;
+  interface: LQGCompoundLensInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -794,7 +794,7 @@ export interface MorphoCompoundLens extends BaseContract {
   >;
 
   initialize: TypedContractMethod<
-    [_morphoAddress: AddressLike],
+    [_LQGAddress: AddressLike],
     [void],
     "nonpayable"
   >;
@@ -823,7 +823,7 @@ export interface MorphoCompoundLens extends BaseContract {
     "view"
   >;
 
-  morpho: TypedContractMethod<[], [string], "view">;
+  LQG: TypedContractMethod<[], [string], "view">;
 
   rewardsManager: TypedContractMethod<[], [string], "view">;
 
@@ -1177,7 +1177,7 @@ export interface MorphoCompoundLens extends BaseContract {
   >;
   getFunction(
     nameOrSignature: "initialize"
-  ): TypedContractMethod<[_morphoAddress: AddressLike], [void], "nonpayable">;
+  ): TypedContractMethod<[_LQGAddress: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "isLiquidatable"
   ): TypedContractMethod<
@@ -1195,7 +1195,7 @@ export interface MorphoCompoundLens extends BaseContract {
     nameOrSignature: "isMarketCreatedAndNotPausedNorPartiallyPaused"
   ): TypedContractMethod<[_poolTokenAddress: AddressLike], [boolean], "view">;
   getFunction(
-    nameOrSignature: "morpho"
+    nameOrSignature: "LQG"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "rewardsManager"

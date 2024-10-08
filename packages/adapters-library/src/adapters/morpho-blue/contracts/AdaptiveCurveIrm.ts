@@ -72,12 +72,12 @@ export type MarketStructOutput = [
 
 export interface AdaptiveCurveIrmInterface extends Interface {
   getFunction(
-    nameOrSignature: "MORPHO" | "borrowRate" | "borrowRateView" | "rateAtTarget"
+    nameOrSignature: "LQG" | "borrowRate" | "borrowRateView" | "rateAtTarget"
   ): FunctionFragment;
 
   getEvent(nameOrSignatureOrTopic: "BorrowRateUpdate"): EventFragment;
 
-  encodeFunctionData(functionFragment: "MORPHO", values?: undefined): string;
+  encodeFunctionData(functionFragment: "LQG", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "borrowRate",
     values: [MarketParamsStruct, MarketStruct]
@@ -91,7 +91,7 @@ export interface AdaptiveCurveIrmInterface extends Interface {
     values: [BytesLike]
   ): string;
 
-  decodeFunctionResult(functionFragment: "MORPHO", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "LQG", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "borrowRate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "borrowRateView",
@@ -168,7 +168,7 @@ export interface AdaptiveCurveIrm extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  MORPHO: TypedContractMethod<[], [string], "view">;
+  LQG: TypedContractMethod<[], [string], "view">;
 
   borrowRate: TypedContractMethod<
     [marketParams: MarketParamsStruct, market: MarketStruct],
@@ -189,7 +189,7 @@ export interface AdaptiveCurveIrm extends BaseContract {
   ): T;
 
   getFunction(
-    nameOrSignature: "MORPHO"
+    nameOrSignature: "LQG"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "borrowRate"

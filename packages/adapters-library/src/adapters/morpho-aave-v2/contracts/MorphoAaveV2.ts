@@ -39,7 +39,7 @@ export declare namespace Types {
   ] & { supply: bigint; borrow: bigint; withdraw: bigint; repay: bigint };
 }
 
-export interface MorphoAaveV2Interface extends Interface {
+export interface LQGAaveV2Interface extends Interface {
   getFunction(
     nameOrSignature:
       | "BORROWING_MASK"
@@ -1159,11 +1159,11 @@ export namespace TreasuryVaultSetEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface MorphoAaveV2 extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoAaveV2;
+export interface LQGAaveV2 extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGAaveV2;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoAaveV2Interface;
+  interface: LQGAaveV2Interface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -1251,7 +1251,7 @@ export interface MorphoAaveV2 extends BaseContract {
   borrowMask: TypedContractMethod<[arg0: AddressLike], [string], "view">;
 
   claimRewards: TypedContractMethod<
-    [_assets: AddressLike[], _tradeForMorphoToken: boolean],
+    [_assets: AddressLike[], _tradeForLQGToken: boolean],
     [bigint],
     "nonpayable"
   >;
@@ -1606,7 +1606,7 @@ export interface MorphoAaveV2 extends BaseContract {
   getFunction(
     nameOrSignature: "claimRewards"
   ): TypedContractMethod<
-    [_assets: AddressLike[], _tradeForMorphoToken: boolean],
+    [_assets: AddressLike[], _tradeForLQGToken: boolean],
     [bigint],
     "nonpayable"
   >;

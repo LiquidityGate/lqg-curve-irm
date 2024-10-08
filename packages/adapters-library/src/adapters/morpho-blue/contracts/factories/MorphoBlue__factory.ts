@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import { Contract, Interface, type ContractRunner } from "ethers";
-import type { MorphoBlue, MorphoBlueInterface } from "../MorphoBlue";
+import type { LQGBlue, LQGBlueInterface } from "../LQGBlue";
 
 const _abi = [
   {
@@ -1532,12 +1532,12 @@ const _abi = [
   },
 ] as const;
 
-export class MorphoBlue__factory {
+export class LQGBlue__factory {
   static readonly abi = _abi;
-  static createInterface(): MorphoBlueInterface {
-    return new Interface(_abi) as MorphoBlueInterface;
+  static createInterface(): LQGBlueInterface {
+    return new Interface(_abi) as LQGBlueInterface;
   }
-  static connect(address: string, runner?: ContractRunner | null): MorphoBlue {
-    return new Contract(address, _abi, runner) as unknown as MorphoBlue;
+  static connect(address: string, runner?: ContractRunner | null): LQGBlue {
+    return new Contract(address, _abi, runner) as unknown as LQGBlue;
   }
 }

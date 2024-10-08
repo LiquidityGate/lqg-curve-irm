@@ -38,7 +38,7 @@ Select one of the following options
   1. Single ERC20 protocol token (Like stETH)
   2. Multiple ERC20 protocol tokens (Like Aave: aETH, aUSDC, Compound: cETH, cUSDC)
   3. Non fungible token (Like Uniswap V3)
-  4. Contract position (Like Morpho)
+  4. Contract position (Like LQG)
   5. Other
 
 ### Q8 ERC20 standard events

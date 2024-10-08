@@ -1,11 +1,11 @@
 {
   "aggregatedValues": ["USD501,950.11"],
   "snapshot": {
-    "protocolId": "morpho-aave-v2",
-    "name": "MorphoAaveV2",
-    "description": "MorphoAaveV2 defi adapter on the supply side",
-    "siteUrl": "https://aavev2.morpho.org/",
-    "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+    "protocolId": "LQG-aave-v2",
+    "name": "LQGAaveV2",
+    "description": "LQGAaveV2 defi adapter on the supply side",
+    "siteUrl": "https://aavev2.LQG.org/",
+    "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
     "positionType": "supply",
     "chainId": 1,
     "productId": "optimizer-supply",

@@ -1,11 +1,11 @@
 {
   "aggregatedValues": ["USD1.64"],
   "snapshot": {
-    "protocolId": "morpho-aave-v3",
-    "name": "MorphoAaveV3",
-    "description": "MorphoAaveV3 DeFi adapter on the supply side",
-    "siteUrl": "https://aavev3.morpho.org/",
-    "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+    "protocolId": "LQG-aave-v3",
+    "name": "LQGAaveV3",
+    "description": "LQGAaveV3 DeFi adapter on the supply side",
+    "siteUrl": "https://aavev3.LQG.org/",
+    "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
     "positionType": "supply",
     "chainId": 1,
     "productId": "optimizer-supply",

@@ -70,7 +70,7 @@ export declare namespace Types {
   };
 }
 
-export interface MorphoAaveV2LensInterface extends Interface {
+export interface LQGAaveV2LensInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "DEFAULT_LIQUIDATION_CLOSE_FACTOR"
@@ -113,7 +113,7 @@ export interface MorphoAaveV2LensInterface extends Interface {
       | "isMarketCreated"
       | "isMarketCreatedAndNotPaused"
       | "isMarketCreatedAndNotPausedNorPartiallyPaused"
-      | "morpho"
+      | "LQG"
       | "pool"
   ): FunctionFragment;
 
@@ -277,7 +277,7 @@ export interface MorphoAaveV2LensInterface extends Interface {
     functionFragment: "isMarketCreatedAndNotPausedNorPartiallyPaused",
     values: [AddressLike]
   ): string;
-  encodeFunctionData(functionFragment: "morpho", values?: undefined): string;
+  encodeFunctionData(functionFragment: "LQG", values?: undefined): string;
   encodeFunctionData(functionFragment: "pool", values?: undefined): string;
 
   decodeFunctionResult(
@@ -437,15 +437,15 @@ export interface MorphoAaveV2LensInterface extends Interface {
     functionFragment: "isMarketCreatedAndNotPausedNorPartiallyPaused",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "morpho", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "LQG", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "pool", data: BytesLike): Result;
 }
 
-export interface MorphoAaveV2Lens extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoAaveV2Lens;
+export interface LQGAaveV2Lens extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGAaveV2Lens;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoAaveV2LensInterface;
+  interface: LQGAaveV2LensInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -865,7 +865,7 @@ export interface MorphoAaveV2Lens extends BaseContract {
     "view"
   >;
 
-  morpho: TypedContractMethod<[], [string], "view">;
+  LQG: TypedContractMethod<[], [string], "view">;
 
   pool: TypedContractMethod<[], [string], "view">;
 
@@ -1263,7 +1263,7 @@ export interface MorphoAaveV2Lens extends BaseContract {
     nameOrSignature: "isMarketCreatedAndNotPausedNorPartiallyPaused"
   ): TypedContractMethod<[_poolToken: AddressLike], [boolean], "view">;
   getFunction(
-    nameOrSignature: "morpho"
+    nameOrSignature: "LQG"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "pool"

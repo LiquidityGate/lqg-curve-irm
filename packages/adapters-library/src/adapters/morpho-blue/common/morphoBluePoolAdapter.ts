@@ -27,19 +27,19 @@ import {
 import { Erc20Metadata } from '../../../types/erc20Metadata'
 import { Protocol } from '../../protocols'
 import { MarketParamsStruct, MarketStruct } from '../contracts/AdaptiveCurveIrm'
-import { SupplyEvent } from '../contracts/MorphoBlue'
+import { SupplyEvent } from '../contracts/LQGBlue'
 import {
   TypedContractEvent,
   TypedDeferredTopicFilter,
 } from '../contracts/common'
 import {
   AdaptiveCurveIrm__factory,
-  MorphoBlue__factory,
+  LQGBlue__factory,
 } from '../contracts/factories'
 import { MarketData, MarketParams } from '../internal-utils/Blue'
-import { MorphoBlueMath } from '../internal-utils/MorphoBlue.maths'
+import { LQGBlueMath } from '../internal-utils/LQGBlue.maths'
 
-type MorphoBlueAdapterMetadata = Record<
+type LQGBlueAdapterMetadata = Record<
   string,
   {
     protocolToken: Erc20Metadata & { tokenId: string }
@@ -48,16 +48,16 @@ type MorphoBlueAdapterMetadata = Record<
   }
 >
 
-const morphoBlueContractAddresses: Partial<
+const LQGBlueContractAddresses: Partial<
   Record<Protocol, Partial<Record<Chain, string>>>
 > = {
-  [Protocol.MorphoBlue]: {
+  [Protocol.LQGBlue]: {
     [Chain.Ethereum]: '0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb',
     [Chain.Base]: '0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb',
   },
 }
 
-export abstract class MorphoBluePoolAdapter
+export abstract class LQGBluePoolAdapter
   implements IMetadataBuilder, IProtocolAdapter
 {
   protocolId: Protocol
@@ -80,29 +80,29 @@ export abstract class MorphoBluePoolAdapter
     this.adaptersController = adaptersController
   }
 
-  __MATH__ = new MorphoBlueMath()
+  __MATH__ = new LQGBlueMath()
 
   adaptersController: AdaptersController
 
   abstract getProtocolDetails(): ProtocolDetails
 
   async buildMetadata() {
-    const morphoBlueContract = MorphoBlue__factory.connect(
-      morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGBlueContract = LQGBlue__factory.connect(
+      LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
       this._provider,
     )
 
-    const createMarketFilter = morphoBlueContract.filters.CreateMarket()
+    const createMarketFilter = LQGBlueContract.filters.CreateMarket()
     const marketIds = (
-      await morphoBlueContract.queryFilter(createMarketFilter, 0, 'latest')
+      await LQGBlueContract.queryFilter(createMarketFilter, 0, 'latest')
     ).map((event) => event.args.id)
 
-    const metadataObject: MorphoBlueAdapterMetadata = {}
+    const metadataObject: LQGBlueAdapterMetadata = {}
 
     await Promise.all(
       marketIds.map(async (id) => {
         const marketParams: MarketParams =
-          await morphoBlueContract.idToMarketParams(id)
+          await LQGBlueContract.idToMarketParams(id)
         const [loanTokenData, collateralTokenData] = await Promise.all([
           getTokenMetadata(
             marketParams.loanToken,
@@ -194,8 +194,8 @@ export abstract class MorphoBluePoolAdapter
     borrowAmount: bigint
     collateralAmount: bigint
   }> {
-    const morphoBlue = MorphoBlue__factory.connect(
-      morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGBlue = LQGBlue__factory.connect(
+      LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
       this._provider,
     )
 
@@ -204,13 +204,13 @@ export abstract class MorphoBluePoolAdapter
       marketData,
       marketParams,
     ] = await Promise.all([
-      morphoBlue.position(marketId, userAddress, {
+      LQGBlue.position(marketId, userAddress, {
         blockTag: blockNumber,
       }),
-      morphoBlue.market(marketId, {
+      LQGBlue.market(marketId, {
         blockTag: blockNumber,
       }),
-      morphoBlue.idToMarketParams(marketId, {
+      LQGBlue.idToMarketParams(marketId, {
         blockTag: blockNumber,
       }),
     ])
@@ -431,8 +431,8 @@ export abstract class MorphoBluePoolAdapter
     blockNumber,
   }: GetTotalValueLockedInput): Promise<ProtocolTokenTvl[]> {
     const metadata = await this.buildMetadata()
-    const morphoBlue = MorphoBlue__factory.connect(
-      morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGBlue = LQGBlue__factory.connect(
+      LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
       this._provider,
     )
     interface Aggregator {
@@ -444,7 +444,7 @@ export abstract class MorphoBluePoolAdapter
     const marketsIds = await this.getMarketsId()
     for (const marketId of marketsIds) {
       const marketMetadata = metadata[marketId]
-      const marketData: MarketData = await morphoBlue.market(marketId, {
+      const marketData: MarketData = await LQGBlue.market(marketId, {
         blockTag: blockNumber,
       })
 
@@ -472,9 +472,9 @@ export abstract class MorphoBluePoolAdapter
       const borrowAssets = borrowAssetsAggregator[tokenAddress] || 0n
 
       const tokenContract = Erc20__factory.connect(tokenAddress, this._provider)
-      const morphoBlueBalance = await tokenContract
+      const LQGBlueBalance = await tokenContract
         .balanceOf(
-          morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+          LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
           {
             blockTag: blockNumber,
           },
@@ -482,7 +482,7 @@ export abstract class MorphoBluePoolAdapter
         .catch(() => 0n)
 
       collateralAggregator[tokenAddress] =
-        morphoBlueBalance - (supplyAssets - borrowAssets)
+        LQGBlueBalance - (supplyAssets - borrowAssets)
     }
     const positionType = this.getProtocolDetails().positionType
     const tvlResults = []
@@ -554,8 +554,8 @@ export abstract class MorphoBluePoolAdapter
       | 'borrowed'
     tokenId: string
   }): Promise<MovementsByBlock[]> {
-    const morphoBlue = MorphoBlue__factory.connect(
-      morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGBlue = LQGBlue__factory.connect(
+      LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
       this._provider,
     )
 
@@ -571,34 +571,34 @@ export abstract class MorphoBluePoolAdapter
     >
     switch (eventType) {
       case 'supplied':
-        filter = morphoBlue.filters.Supply(tokenId, undefined, userAddress)
+        filter = LQGBlue.filters.Supply(tokenId, undefined, userAddress)
         break
       case 'collat-supplied':
-        filter = morphoBlue.filters.SupplyCollateral(
+        filter = LQGBlue.filters.SupplyCollateral(
           tokenId,
           undefined,
           userAddress,
         )
         break
       case 'withdrawn':
-        filter = morphoBlue.filters.Withdraw(tokenId, undefined, userAddress)
+        filter = LQGBlue.filters.Withdraw(tokenId, undefined, userAddress)
         break
       case 'collat-withdrawn':
-        filter = morphoBlue.filters.WithdrawCollateral(
+        filter = LQGBlue.filters.WithdrawCollateral(
           tokenId,
           undefined,
           userAddress,
         )
         break
       case 'repaid':
-        filter = morphoBlue.filters.Repay(tokenId, undefined, userAddress)
+        filter = LQGBlue.filters.Repay(tokenId, undefined, userAddress)
         break
       case 'borrowed':
-        filter = morphoBlue.filters.Borrow(tokenId, undefined, userAddress)
+        filter = LQGBlue.filters.Borrow(tokenId, undefined, userAddress)
         break
     }
 
-    const eventResults = await morphoBlue.queryFilter(
+    const eventResults = await LQGBlue.queryFilter(
       filter,
       fromBlock,
       toBlock,
@@ -642,7 +642,7 @@ export abstract class MorphoBluePoolAdapter
   //     }
   //   > = {
   //     [Chain.Ethereum]: {
-  //       url: 'https://api.thegraph.com/subgraphs/name/morpho-association/morpho-blue',
+  //       url: 'https://api.thegraph.com/subgraphs/name/LQG-association/LQG-blue',
   //       query: `{ markets(first: ${numberOfMarkets} where: {totalValueLockedUSD_gt: ${minVolumeUSD}} orderBy: totalValueLockedUSD orderDirection: desc) {id}}`,
   //     },
   //   }
@@ -683,18 +683,18 @@ export abstract class MorphoBluePoolAdapter
 //   blockNumber,
 //   aprExpected,
 // }: GetAprInputExtended): Promise<number> {
-//   const morphoBlue = MorphoBlue__factory.connect(
-//     morphoBlueContractAddresses[this.protocolId]![this.chainId]!,
+//   const LQGBlue = LQGBlue__factory.connect(
+//     LQGBlueContractAddresses[this.protocolId]![this.chainId]!,
 //     this._provider,
 //   )
 
 //   const marketId = protocolTokenAddress
 
 //   const [marketData_, marketParams_] = await Promise.all([
-//     morphoBlue.market(protocolTokenAddress, {
+//     LQGBlue.market(protocolTokenAddress, {
 //       blockTag: blockNumber,
 //     }),
-//     morphoBlue.idToMarketParams(marketId, {
+//     LQGBlue.idToMarketParams(marketId, {
 //       blockTag: blockNumber,
 //     }),
 //   ])

@@ -5,7 +5,7 @@ import * as RayMath from 'evm-maths/lib/ray'
 import * as WadMath from 'evm-maths/lib/wad'
 import { SECONDS_PER_YEAR } from '../../../core/constants/SECONDS_PER_YEAR'
 
-export class MorphoAaveMath {
+export class LQGAaveMath {
   /** Indexes are expressed in RAY */
   private _indexesDecimals = 27
   indexMul = RayMath.rayMul
@@ -34,7 +34,7 @@ export class MorphoAaveMath {
   percentDiv = PercentMath.percentDiv
   PERCENT_ONE = constants.PERCENT
 
-  // https://github.com/morpho-org/morpho-aave-v3/blob/main/src/MorphoInternal.sol#LL312C20-L312C20
+  // https://github.com/LQG-org/LQG-aave-v3/blob/main/src/LQGInternal.sol#LL312C20-L312C20
   divUp = (a: bigint, b: bigint) => a / b + (a % b > 0 ? 1n : 0n)
   /**
    * Computes the mid rate depending on the p2p index cursor

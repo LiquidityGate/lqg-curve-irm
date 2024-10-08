@@ -13,7 +13,7 @@ const _abi = [
     inputs: [
       {
         internalType: "address",
-        name: "morpho",
+        name: "LQG",
         type: "address",
       },
     ],
@@ -47,7 +47,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "MORPHO",
+    name: "LQG",
     outputs: [
       {
         internalType: "address",

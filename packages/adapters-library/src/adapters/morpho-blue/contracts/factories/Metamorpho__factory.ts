@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import { Contract, Interface, type ContractRunner } from "ethers";
-import type { Metamorpho, MetamorphoInterface } from "../Metamorpho";
+import type { MetaLQG, MetaLQGInterface } from "../MetaLQG";
 
 const _abi = [
   {
@@ -15,7 +15,7 @@ const _abi = [
       },
       {
         internalType: "address",
-        name: "morpho",
+        name: "LQG",
         type: "address",
       },
       {
@@ -1199,10 +1199,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "MORPHO",
+    name: "LQG",
     outputs: [
       {
-        internalType: "contract IMorpho",
+        internalType: "contract ILQG",
         name: "",
         type: "address",
       },
@@ -2512,12 +2512,12 @@ const _abi = [
   },
 ] as const;
 
-export class Metamorpho__factory {
+export class MetaLQG__factory {
   static readonly abi = _abi;
-  static createInterface(): MetamorphoInterface {
-    return new Interface(_abi) as MetamorphoInterface;
+  static createInterface(): MetaLQGInterface {
+    return new Interface(_abi) as MetaLQGInterface;
   }
-  static connect(address: string, runner?: ContractRunner | null): Metamorpho {
-    return new Contract(address, _abi, runner) as unknown as Metamorpho;
+  static connect(address: string, runner?: ContractRunner | null): MetaLQG {
+    return new Contract(address, _abi, runner) as unknown as MetaLQG;
   }
 }

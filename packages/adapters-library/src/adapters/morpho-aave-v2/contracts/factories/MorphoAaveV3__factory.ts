@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import { Contract, Interface, type ContractRunner } from "ethers";
-import type { MorphoAaveV3, MorphoAaveV3Interface } from "../MorphoAaveV3";
+import type { LQGAaveV3, LQGAaveV3Interface } from "../LQGAaveV3";
 
 const _abi = [
   {
@@ -23,12 +23,12 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "AssetIsCollateralOnMorpho",
+    name: "AssetIsCollateralOnLQG",
     type: "error",
   },
   {
     inputs: [],
-    name: "AssetNotCollateralOnMorpho",
+    name: "AssetNotCollateralOnLQG",
     type: "error",
   },
   {
@@ -2996,15 +2996,15 @@ const _abi = [
   },
 ] as const;
 
-export class MorphoAaveV3__factory {
+export class LQGAaveV3__factory {
   static readonly abi = _abi;
-  static createInterface(): MorphoAaveV3Interface {
-    return new Interface(_abi) as MorphoAaveV3Interface;
+  static createInterface(): LQGAaveV3Interface {
+    return new Interface(_abi) as LQGAaveV3Interface;
   }
   static connect(
     address: string,
     runner?: ContractRunner | null
-  ): MorphoAaveV3 {
-    return new Contract(address, _abi, runner) as unknown as MorphoAaveV3;
+  ): LQGAaveV3 {
+    return new Contract(address, _abi, runner) as unknown as LQGAaveV3;
   }
 }

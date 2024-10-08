@@ -25,10 +25,10 @@ import { testCases as lidoTestCases } from './lido/tests/testCases'
 import { testCases as lynexTestCases } from './lynex/tests/testCases'
 import { testCases as makerTestCases } from './maker/tests/testCases'
 import { testCases as mendiFinanceTestCases } from './mendi-finance/tests/testCases'
-import { testCases as morphoAaveV2TestCases } from './morpho-aave-v2/tests/testCases'
-import { testCases as morphoAaveV3TestCases } from './morpho-aave-v3/tests/testCases'
-import { testCases as morphoBlueTestCases } from './morpho-blue/tests/testCases'
-import { testCases as morphoCompoundV2TestCases } from './morpho-compound-v2/tests/testCases'
+import { testCases as LQGAaveV2TestCases } from './LQG-aave-v2/tests/testCases'
+import { testCases as LQGAaveV3TestCases } from './LQG-aave-v3/tests/testCases'
+import { testCases as LQGBlueTestCases } from './LQG-blue/tests/testCases'
+import { testCases as LQGCompoundV2TestCases } from './LQG-compound-v2/tests/testCases'
 import { testCases as pancakeswapV2TestCases } from './pancakeswap-v2/tests/testCases'
 import { testCases as pendleTestCases } from './pendle/tests/testCases'
 import { testCases as pricesV2TestCases } from './prices-v2/tests/testCases'
@@ -81,10 +81,10 @@ const protocolTestCases = {
   [Protocol.Lynex]: lynexTestCases,
   [Protocol.Maker]: makerTestCases,
   [Protocol.MendiFinance]: mendiFinanceTestCases,
-  [Protocol.MorphoAaveV2]: morphoAaveV2TestCases,
-  [Protocol.MorphoAaveV3]: morphoAaveV3TestCases,
-  [Protocol.MorphoBlue]: morphoBlueTestCases,
-  [Protocol.MorphoCompoundV2]: morphoCompoundV2TestCases,
+  [Protocol.LQGAaveV2]: LQGAaveV2TestCases,
+  [Protocol.LQGAaveV3]: LQGAaveV3TestCases,
+  [Protocol.LQGBlue]: LQGBlueTestCases,
+  [Protocol.LQGCompoundV2]: LQGCompoundV2TestCases,
   [Protocol.PancakeswapV2]: pancakeswapV2TestCases,
   [Protocol.Pendle]: pendleTestCases,
   [Protocol.PricesV2]: pricesV2TestCases,

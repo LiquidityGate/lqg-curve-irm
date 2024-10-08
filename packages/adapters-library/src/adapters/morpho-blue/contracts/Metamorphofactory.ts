@@ -23,37 +23,37 @@ import type {
   TypedContractMethod,
 } from "./common";
 
-export interface MetamorphofactoryInterface extends Interface {
+export interface MetaLQGfactoryInterface extends Interface {
   getFunction(
-    nameOrSignature: "MORPHO" | "createMetaMorpho" | "isMetaMorpho"
+    nameOrSignature: "LQG" | "createMetaLQG" | "isMetaLQG"
   ): FunctionFragment;
 
-  getEvent(nameOrSignatureOrTopic: "CreateMetaMorpho"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "CreateMetaLQG"): EventFragment;
 
-  encodeFunctionData(functionFragment: "MORPHO", values?: undefined): string;
+  encodeFunctionData(functionFragment: "LQG", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "createMetaMorpho",
+    functionFragment: "createMetaLQG",
     values: [AddressLike, BigNumberish, AddressLike, string, string, BytesLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "isMetaMorpho",
+    functionFragment: "isMetaLQG",
     values: [AddressLike]
   ): string;
 
-  decodeFunctionResult(functionFragment: "MORPHO", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "LQG", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "createMetaMorpho",
+    functionFragment: "createMetaLQG",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "isMetaMorpho",
+    functionFragment: "isMetaLQG",
     data: BytesLike
   ): Result;
 }
 
-export namespace CreateMetaMorphoEvent {
+export namespace CreateMetaLQGEvent {
   export type InputTuple = [
-    metaMorpho: AddressLike,
+    metaLQG: AddressLike,
     caller: AddressLike,
     initialOwner: AddressLike,
     initialTimelock: BigNumberish,
@@ -63,7 +63,7 @@ export namespace CreateMetaMorphoEvent {
     salt: BytesLike
   ];
   export type OutputTuple = [
-    metaMorpho: string,
+    metaLQG: string,
     caller: string,
     initialOwner: string,
     initialTimelock: bigint,
@@ -73,7 +73,7 @@ export namespace CreateMetaMorphoEvent {
     salt: string
   ];
   export interface OutputObject {
-    metaMorpho: string;
+    metaLQG: string;
     caller: string;
     initialOwner: string;
     initialTimelock: bigint;
@@ -88,11 +88,11 @@ export namespace CreateMetaMorphoEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface Metamorphofactory extends BaseContract {
-  connect(runner?: ContractRunner | null): Metamorphofactory;
+export interface MetaLQGfactory extends BaseContract {
+  connect(runner?: ContractRunner | null): MetaLQGfactory;
   waitForDeployment(): Promise<this>;
 
-  interface: MetamorphofactoryInterface;
+  interface: MetaLQGfactoryInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -131,9 +131,9 @@ export interface Metamorphofactory extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  MORPHO: TypedContractMethod<[], [string], "view">;
+  LQG: TypedContractMethod<[], [string], "view">;
 
-  createMetaMorpho: TypedContractMethod<
+  createMetaLQG: TypedContractMethod<
     [
       initialOwner: AddressLike,
       initialTimelock: BigNumberish,
@@ -146,17 +146,17 @@ export interface Metamorphofactory extends BaseContract {
     "nonpayable"
   >;
 
-  isMetaMorpho: TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
+  isMetaLQG: TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
 
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
 
   getFunction(
-    nameOrSignature: "MORPHO"
+    nameOrSignature: "LQG"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
-    nameOrSignature: "createMetaMorpho"
+    nameOrSignature: "createMetaLQG"
   ): TypedContractMethod<
     [
       initialOwner: AddressLike,
@@ -170,27 +170,27 @@ export interface Metamorphofactory extends BaseContract {
     "nonpayable"
   >;
   getFunction(
-    nameOrSignature: "isMetaMorpho"
+    nameOrSignature: "isMetaLQG"
   ): TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
 
   getEvent(
-    key: "CreateMetaMorpho"
+    key: "CreateMetaLQG"
   ): TypedContractEvent<
-    CreateMetaMorphoEvent.InputTuple,
-    CreateMetaMorphoEvent.OutputTuple,
-    CreateMetaMorphoEvent.OutputObject
+    CreateMetaLQGEvent.InputTuple,
+    CreateMetaLQGEvent.OutputTuple,
+    CreateMetaLQGEvent.OutputObject
   >;
 
   filters: {
-    "CreateMetaMorpho(address,address,address,uint256,address,string,string,bytes32)": TypedContractEvent<
-      CreateMetaMorphoEvent.InputTuple,
-      CreateMetaMorphoEvent.OutputTuple,
-      CreateMetaMorphoEvent.OutputObject
+    "CreateMetaLQG(address,address,address,uint256,address,string,string,bytes32)": TypedContractEvent<
+      CreateMetaLQGEvent.InputTuple,
+      CreateMetaLQGEvent.OutputTuple,
+      CreateMetaLQGEvent.OutputObject
     >;
-    CreateMetaMorpho: TypedContractEvent<
-      CreateMetaMorphoEvent.InputTuple,
-      CreateMetaMorphoEvent.OutputTuple,
-      CreateMetaMorphoEvent.OutputObject
+    CreateMetaLQG: TypedContractEvent<
+      CreateMetaLQGEvent.InputTuple,
+      CreateMetaLQGEvent.OutputTuple,
+      CreateMetaLQGEvent.OutputObject
     >;
   };
 }

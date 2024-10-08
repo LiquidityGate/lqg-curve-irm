@@ -77,7 +77,7 @@ export const QuestionAnswers = {
     Multiple:
       'Multiple ERC20 protocol tokens (Like Aave: aETH, aUSDC, Compound: cETH, cUSDC)',
     NonFungible: 'Non fungible token (Like Uniswap V3)',
-    ContractPosition: 'Contract position (Like Morpho)',
+    ContractPosition: 'Contract position (Like LQG)',
     Other: 'Other',
   },
   [QuestionName.UnderlyingTokens]: {

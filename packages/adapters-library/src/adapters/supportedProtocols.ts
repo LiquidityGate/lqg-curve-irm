@@ -51,14 +51,14 @@ import {
   MendiFinanceSupplyMarketAdapter,
   WriteActionInputs as MendiFinanceSupplyMarketWriteActionInputs,
 } from './mendi-finance/products/supply-market/mendiFinanceSupplyMarketAdapter'
-import { MorphoAaveV2OptimizerBorrowAdapter } from './morpho-aave-v2/products/optimizer-borrow/morphoAaveV2OptimizerBorrowAdapter'
-import { MorphoAaveV2OptimizerSupplyAdapter } from './morpho-aave-v2/products/optimizer-supply/morphoAaveV2OptimizerSupplyAdapter'
-import { MorphoAaveV3OptimizerBorrowAdapter } from './morpho-aave-v3/products/optimizer-borrow/morphoAaveV3OptimizerBorrowAdapter'
-import { MorphoAaveV3OptimizerSupplyAdapter } from './morpho-aave-v3/products/optimizer-supply/morphoAaveV3OptimizerSupplyAdapter'
-import { MorphoBlueMarketBorrowAdapter } from './morpho-blue/products/market-borrow/morphoBlueMarketBorrowAdapter'
-import { MorphoBlueMarketSupplyAdapter } from './morpho-blue/products/market-supply/morphoBlueMarketSupplyAdapter'
-import { MorphoCompoundV2OptimizerBorrowAdapter } from './morpho-compound-v2/products/optimizer-borrow/morphoCompoundV2OptimizerBorrowAdapter'
-import { MorphoCompoundV2OptimizerSupplyAdapter } from './morpho-compound-v2/products/optimizer-supply/morphoCompoundV2OptimizerSupplyAdapter'
+import { LQGAaveV2OptimizerBorrowAdapter } from './LQG-aave-v2/products/optimizer-borrow/LQGAaveV2OptimizerBorrowAdapter'
+import { LQGAaveV2OptimizerSupplyAdapter } from './LQG-aave-v2/products/optimizer-supply/LQGAaveV2OptimizerSupplyAdapter'
+import { LQGAaveV3OptimizerBorrowAdapter } from './LQG-aave-v3/products/optimizer-borrow/LQGAaveV3OptimizerBorrowAdapter'
+import { LQGAaveV3OptimizerSupplyAdapter } from './LQG-aave-v3/products/optimizer-supply/LQGAaveV3OptimizerSupplyAdapter'
+import { LQGBlueMarketBorrowAdapter } from './LQG-blue/products/market-borrow/LQGBlueMarketBorrowAdapter'
+import { LQGBlueMarketSupplyAdapter } from './LQG-blue/products/market-supply/LQGBlueMarketSupplyAdapter'
+import { LQGCompoundV2OptimizerBorrowAdapter } from './LQG-compound-v2/products/optimizer-borrow/LQGCompoundV2OptimizerBorrowAdapter'
+import { LQGCompoundV2OptimizerSupplyAdapter } from './LQG-compound-v2/products/optimizer-supply/LQGCompoundV2OptimizerSupplyAdapter'
 import { PancakeswapV2PoolAdapter } from './pancakeswap-v2/products/pool/pancakeswapV2PoolAdapter'
 
 import { PricesV2UsdAdapter } from './prices-v2/products/usd/pricesV2UsdAdapter'
@@ -94,7 +94,7 @@ import { PendleLpTokenAdapter } from './pendle/products/lp-token/pendleLpTokenAd
 
 import { RenzoEzEthAdapter } from './renzo/products/ez-eth/renzoEzEthAdapter'
 
-import { MorphoBlueVaultAdapter } from './morpho-blue/products/vault/morphoBlueVaultAdapter'
+import { LQGBlueVaultAdapter } from './LQG-blue/products/vault/LQGBlueVaultAdapter'
 
 export const supportedProtocols: Record<
   Protocol,
@@ -267,37 +267,37 @@ export const supportedProtocols: Record<
     ],
   },
 
-  [Protocol.MorphoAaveV2]: {
+  [Protocol.LQGAaveV2]: {
     [Chain.Ethereum]: [
-      MorphoAaveV2OptimizerBorrowAdapter,
-      MorphoAaveV2OptimizerSupplyAdapter,
+      LQGAaveV2OptimizerBorrowAdapter,
+      LQGAaveV2OptimizerSupplyAdapter,
     ],
   },
 
-  [Protocol.MorphoAaveV3]: {
+  [Protocol.LQGAaveV3]: {
     [Chain.Ethereum]: [
-      MorphoAaveV3OptimizerSupplyAdapter,
-      MorphoAaveV3OptimizerBorrowAdapter,
+      LQGAaveV3OptimizerSupplyAdapter,
+      LQGAaveV3OptimizerBorrowAdapter,
     ],
   },
 
-  [Protocol.MorphoBlue]: {
+  [Protocol.LQGBlue]: {
     [Chain.Ethereum]: [
-      MorphoBlueMarketSupplyAdapter,
-      MorphoBlueMarketBorrowAdapter,
-      MorphoBlueVaultAdapter,
+      LQGBlueMarketSupplyAdapter,
+      LQGBlueMarketBorrowAdapter,
+      LQGBlueVaultAdapter,
     ],
     [Chain.Base]: [
-      MorphoBlueMarketSupplyAdapter,
-      MorphoBlueMarketBorrowAdapter,
-      MorphoBlueVaultAdapter,
+      LQGBlueMarketSupplyAdapter,
+      LQGBlueMarketBorrowAdapter,
+      LQGBlueVaultAdapter,
     ],
   },
 
-  [Protocol.MorphoCompoundV2]: {
+  [Protocol.LQGCompoundV2]: {
     [Chain.Ethereum]: [
-      MorphoCompoundV2OptimizerSupplyAdapter,
-      MorphoCompoundV2OptimizerBorrowAdapter,
+      LQGCompoundV2OptimizerSupplyAdapter,
+      LQGCompoundV2OptimizerBorrowAdapter,
     ],
   },
 

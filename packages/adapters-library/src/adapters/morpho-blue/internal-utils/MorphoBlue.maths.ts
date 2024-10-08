@@ -3,7 +3,7 @@ import * as PercentMath from 'evm-maths/lib/percent'
 import * as WadMath from 'evm-maths/lib/wad'
 import { MarketData } from './Blue'
 
-export class MorphoBlueMath {
+export class LQGBlueMath {
   pow10 = (exponant: bigint | number) => 10n ** BigInt(exponant)
 
   WAD = this.pow10(18)

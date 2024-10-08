@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { CToken } from "./CToken";
-export type { MorphoCompound } from "./MorphoCompound";
-export type { MorphoCompoundLens } from "./MorphoCompoundLens";
+export type { LQGCompound } from "./LQGCompound";
+export type { LQGCompoundLens } from "./LQGCompoundLens";
 export * as factories from "./factories";
 export { CToken__factory } from "./factories/CToken__factory";
-export { MorphoCompoundLens__factory } from "./factories/MorphoCompoundLens__factory";
-export { MorphoCompound__factory } from "./factories/MorphoCompound__factory";
+export { LQGCompoundLens__factory } from "./factories/LQGCompoundLens__factory";
+export { LQGCompound__factory } from "./factories/LQGCompound__factory";

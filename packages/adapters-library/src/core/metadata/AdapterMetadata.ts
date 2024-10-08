@@ -84,14 +84,14 @@ import LynexClassicLineaProtocolToken from '../../adapters/lynex/products/classi
 import MendiFinanceBorrowMarketLineaMendi from '../../adapters/mendi-finance/products/borrow-market/metadata/linea.mendi.json'
 import MendiFinanceSupplyMarketLineaMendi from '../../adapters/mendi-finance/products/supply-market/metadata/linea.mendi.json'
 
-import MorphoAaveV2OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/morpho-aave-v2/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
-import MorphoAaveV2OptimizerSupplyEthereumOptimizerSupply from '../../adapters/morpho-aave-v2/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
-import MorphoAaveV3OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/morpho-aave-v3/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
-import MorphoAaveV3OptimizerSupplyEthereumOptimizerSupply from '../../adapters/morpho-aave-v3/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
-import MorphoBlueMarketBorrowEthereumMarketBorrow from '../../adapters/morpho-blue/products/market-borrow/metadata/ethereum.market-borrow.json'
-import MorphoBlueMarketSupplyEthereumMarketSupply from '../../adapters/morpho-blue/products/market-supply/metadata/ethereum.market-supply.json'
-import MorphoCompoundV2OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/morpho-compound-v2/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
-import MorphoCompoundV2OptimizerSupplyEthereumOptimizerSupply from '../../adapters/morpho-compound-v2/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
+import LQGAaveV2OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/LQG-aave-v2/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
+import LQGAaveV2OptimizerSupplyEthereumOptimizerSupply from '../../adapters/LQG-aave-v2/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
+import LQGAaveV3OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/LQG-aave-v3/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
+import LQGAaveV3OptimizerSupplyEthereumOptimizerSupply from '../../adapters/LQG-aave-v3/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
+import LQGBlueMarketBorrowEthereumMarketBorrow from '../../adapters/LQG-blue/products/market-borrow/metadata/ethereum.market-borrow.json'
+import LQGBlueMarketSupplyEthereumMarketSupply from '../../adapters/LQG-blue/products/market-supply/metadata/ethereum.market-supply.json'
+import LQGCompoundV2OptimizerBorrowEthereumOptimizerBorrow from '../../adapters/LQG-compound-v2/products/optimizer-borrow/metadata/ethereum.optimizer-borrow.json'
+import LQGCompoundV2OptimizerSupplyEthereumOptimizerSupply from '../../adapters/LQG-compound-v2/products/optimizer-supply/metadata/ethereum.optimizer-supply.json'
 import PancakeswapV2PoolArbitrumProtocolToken from '../../adapters/pancakeswap-v2/products/pool/metadata/arbitrum.protocol-token.json'
 import PancakeswapV2PoolBaseProtocolToken from '../../adapters/pancakeswap-v2/products/pool/metadata/base.protocol-token.json'
 import PancakeswapV2PoolBscProtocolToken from '../../adapters/pancakeswap-v2/products/pool/metadata/bsc.protocol-token.json'
@@ -174,13 +174,13 @@ import RenzoEzEthBscEzEth from '../../adapters/renzo/products/ez-eth/metadata/bs
 import RenzoEzEthEthereumEzEth from '../../adapters/renzo/products/ez-eth/metadata/ethereum.ez-eth.json'
 import RenzoEzEthLineaEzEth from '../../adapters/renzo/products/ez-eth/metadata/linea.ez-eth.json'
 
-import MorphoBlueVaultEthereumProtocolToken from '../../adapters/morpho-blue/products/vault/metadata/ethereum.protocol-token.json'
+import LQGBlueVaultEthereumProtocolToken from '../../adapters/LQG-blue/products/vault/metadata/ethereum.protocol-token.json'
 
-import MorphoBlueMarketSupplyBaseMarketSupply from '../../adapters/morpho-blue/products/market-supply/metadata/base.market-supply.json'
+import LQGBlueMarketSupplyBaseMarketSupply from '../../adapters/LQG-blue/products/market-supply/metadata/base.market-supply.json'
 
-import MorphoBlueMarketBorrowBaseMarketBorrow from '../../adapters/morpho-blue/products/market-borrow/metadata/base.market-borrow.json'
+import LQGBlueMarketBorrowBaseMarketBorrow from '../../adapters/LQG-blue/products/market-borrow/metadata/base.market-borrow.json'
 
-import MorphoBlueVaultBaseProtocolToken from '../../adapters/morpho-blue/products/vault/metadata/base.protocol-token.json'
+import LQGBlueVaultBaseProtocolToken from '../../adapters/LQG-blue/products/vault/metadata/base.protocol-token.json'
 
 export const MetadataFiles = new Map<string, Json>([
   [
@@ -959,111 +959,111 @@ export const MetadataFiles = new Map<string, Json>([
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoAaveV2,
+      protocolId: Protocol.LQGAaveV2,
       productId: 'optimizer-borrow',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-borrow',
     }),
-    MorphoAaveV2OptimizerBorrowEthereumOptimizerBorrow,
+    LQGAaveV2OptimizerBorrowEthereumOptimizerBorrow,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoAaveV2,
+      protocolId: Protocol.LQGAaveV2,
       productId: 'optimizer-supply',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-supply',
     }),
-    MorphoAaveV2OptimizerSupplyEthereumOptimizerSupply,
+    LQGAaveV2OptimizerSupplyEthereumOptimizerSupply,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoAaveV3,
+      protocolId: Protocol.LQGAaveV3,
       productId: 'optimizer-borrow',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-borrow',
     }),
-    MorphoAaveV3OptimizerBorrowEthereumOptimizerBorrow,
+    LQGAaveV3OptimizerBorrowEthereumOptimizerBorrow,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoAaveV3,
+      protocolId: Protocol.LQGAaveV3,
       productId: 'optimizer-supply',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-supply',
     }),
-    MorphoAaveV3OptimizerSupplyEthereumOptimizerSupply,
+    LQGAaveV3OptimizerSupplyEthereumOptimizerSupply,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'market-borrow',
       chainId: Chain.Base,
       fileKey: 'market-borrow',
     }),
-    MorphoBlueMarketBorrowBaseMarketBorrow,
+    LQGBlueMarketBorrowBaseMarketBorrow,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'market-borrow',
       chainId: Chain.Ethereum,
       fileKey: 'market-borrow',
     }),
-    MorphoBlueMarketBorrowEthereumMarketBorrow,
+    LQGBlueMarketBorrowEthereumMarketBorrow,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'market-supply',
       chainId: Chain.Base,
       fileKey: 'market-supply',
     }),
-    MorphoBlueMarketSupplyBaseMarketSupply,
+    LQGBlueMarketSupplyBaseMarketSupply,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'market-supply',
       chainId: Chain.Ethereum,
       fileKey: 'market-supply',
     }),
-    MorphoBlueMarketSupplyEthereumMarketSupply,
+    LQGBlueMarketSupplyEthereumMarketSupply,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'vault',
       chainId: Chain.Base,
       fileKey: 'protocol-token',
     }),
-    MorphoBlueVaultBaseProtocolToken,
+    LQGBlueVaultBaseProtocolToken,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoBlue,
+      protocolId: Protocol.LQGBlue,
       productId: 'vault',
       chainId: Chain.Ethereum,
       fileKey: 'protocol-token',
     }),
-    MorphoBlueVaultEthereumProtocolToken,
+    LQGBlueVaultEthereumProtocolToken,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoCompoundV2,
+      protocolId: Protocol.LQGCompoundV2,
       productId: 'optimizer-borrow',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-borrow',
     }),
-    MorphoCompoundV2OptimizerBorrowEthereumOptimizerBorrow,
+    LQGCompoundV2OptimizerBorrowEthereumOptimizerBorrow,
   ],
   [
     metadataKey({
-      protocolId: Protocol.MorphoCompoundV2,
+      protocolId: Protocol.LQGCompoundV2,
       productId: 'optimizer-supply',
       chainId: Chain.Ethereum,
       fileKey: 'optimizer-supply',
     }),
-    MorphoCompoundV2OptimizerSupplyEthereumOptimizerSupply,
+    LQGCompoundV2OptimizerSupplyEthereumOptimizerSupply,
   ],
   [
     metadataKey({

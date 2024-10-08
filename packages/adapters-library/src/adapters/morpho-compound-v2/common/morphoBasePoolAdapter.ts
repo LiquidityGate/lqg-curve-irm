@@ -28,16 +28,16 @@ import { Erc20Metadata } from '../../../types/erc20Metadata'
 import { Protocol } from '../../protocols'
 import {
   CToken__factory,
-  MorphoCompoundLens__factory,
-  MorphoCompound__factory,
+  LQGCompoundLens__factory,
+  LQGCompound__factory,
 } from '../contracts'
-import { SuppliedEvent } from '../contracts/MorphoCompound'
+import { SuppliedEvent } from '../contracts/LQGCompound'
 import {
   TypedContractEvent,
   TypedDeferredTopicFilter,
 } from '../contracts/common'
 
-type MorphoCompoundV2PeerToPoolAdapterMetadata = Record<
+type LQGCompoundV2PeerToPoolAdapterMetadata = Record<
   string,
   {
     protocolToken: Erc20Metadata
@@ -45,15 +45,15 @@ type MorphoCompoundV2PeerToPoolAdapterMetadata = Record<
   }
 >
 
-const morphoCompoundV2ContractAddresses: Partial<
+const LQGCompoundV2ContractAddresses: Partial<
   Record<Protocol, Partial<Record<Chain, string>>>
 > = {
-  [Protocol.MorphoCompoundV2]: {
+  [Protocol.LQGCompoundV2]: {
     [Chain.Ethereum]: getAddress('0x8888882f8f843896699869179fb6e4f7e3b58888'),
   },
 }
 
-export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
+export abstract class LQGBasePoolAdapter implements IMetadataBuilder {
   protocolId: Protocol
   chainId: Chain
 
@@ -77,7 +77,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 
   abstract getProtocolDetails(): ProtocolDetails
 
-  private _metadataCache: MorphoCompoundV2PeerToPoolAdapterMetadata | null =
+  private _metadataCache: LQGCompoundV2PeerToPoolAdapterMetadata | null =
     null
 
   async buildMetadata() {
@@ -85,14 +85,14 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
       return this._metadataCache
     }
 
-    const morphoCompoundContract = MorphoCompound__factory.connect(
-      morphoCompoundV2ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGCompoundContract = LQGCompound__factory.connect(
+      LQGCompoundV2ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
-    const metadataObject: MorphoCompoundV2PeerToPoolAdapterMetadata = {}
+    const metadataObject: LQGCompoundV2PeerToPoolAdapterMetadata = {}
 
-    const markets = await morphoCompoundContract.getAllMarkets()
+    const markets = await LQGCompoundContract.getAllMarkets()
 
     await Promise.all(
       markets.map(async (marketAddress) => {
@@ -183,7 +183,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     userAddress,
     blockNumber,
   }: GetPositionsInput): Promise<ProtocolPosition[]> {
-    const lensContract = MorphoCompoundLens__factory.connect(
+    const lensContract = LQGCompoundLens__factory.connect(
       this.lensAddress,
       this.provider,
     )
@@ -324,7 +324,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     blockNumber,
   }: GetTotalValueLockedInput): Promise<ProtocolTokenTvl[]> {
     const tokens = await this.getProtocolTokens()
-    const lensContract = MorphoCompoundLens__factory.connect(
+    const lensContract = LQGCompoundLens__factory.connect(
       this.lensAddress,
       this.provider,
     )
@@ -383,8 +383,8 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     toBlock: number
     eventType: 'supplied' | 'withdrawn' | 'repaid' | 'borrowed'
   }): Promise<MovementsByBlock[]> {
-    const morphoCompoundContract = MorphoCompound__factory.connect(
-      morphoCompoundV2ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGCompoundContract = LQGCompound__factory.connect(
+      LQGCompoundV2ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
@@ -402,21 +402,21 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     >
     switch (eventType) {
       case 'supplied':
-        filter = morphoCompoundContract.filters.Supplied(
+        filter = LQGCompoundContract.filters.Supplied(
           undefined,
           userAddress,
           protocolTokenAddress,
         )
         break
       case 'withdrawn':
-        filter = morphoCompoundContract.filters.Withdrawn(
+        filter = LQGCompoundContract.filters.Withdrawn(
           userAddress,
           undefined,
           protocolTokenAddress,
         )
         break
       case 'repaid':
-        filter = morphoCompoundContract.filters.Repaid(
+        filter = LQGCompoundContract.filters.Repaid(
           undefined,
           userAddress,
           protocolTokenAddress,
@@ -424,7 +424,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 
         break
       case 'borrowed':
-        filter = morphoCompoundContract.filters.Borrowed(
+        filter = LQGCompoundContract.filters.Borrowed(
           userAddress,
           protocolTokenAddress,
         )
@@ -432,7 +432,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
         break
     }
 
-    const eventResults = await morphoCompoundContract.queryFilter(
+    const eventResults = await LQGCompoundContract.queryFilter(
       filter,
       fromBlock,
       toBlock,
@@ -468,7 +468,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //   protocolTokenAddress,
 //   blockNumber,
 // }: GetAprInput): Promise<number> {
-//   const lensContract = MorphoCompoundLens__factory.connect(
+//   const lensContract = LQGCompoundLens__factory.connect(
 //     this.lensAddress,
 //     this.provider,
 //   )

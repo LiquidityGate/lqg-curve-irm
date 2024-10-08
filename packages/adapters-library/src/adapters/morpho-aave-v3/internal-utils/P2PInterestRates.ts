@@ -2,7 +2,7 @@ import * as constants from 'evm-maths/lib/constants'
 import * as PercentMath from 'evm-maths/lib/percent'
 import * as RayMath from 'evm-maths/lib/ray'
 import { min } from 'evm-maths/lib/utils'
-import { MorphoAaveMath } from './AaveV3.maths'
+import { LQGAaveMath } from './AaveV3.maths'
 
 export interface MarketSideDelta {
   scaledDelta: bigint // The delta amount in pool unit.
@@ -89,7 +89,7 @@ export interface RateParams {
 }
 
 export default class P2PInterestRates {
-  __MATHS__ = new MorphoAaveMath()
+  __MATHS__ = new LQGAaveMath()
 
   public computeP2PIndexes({
     p2pIndexCursor,

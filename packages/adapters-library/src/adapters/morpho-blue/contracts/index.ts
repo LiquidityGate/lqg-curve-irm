@@ -2,11 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { AdaptiveCurveIrm } from "./AdaptiveCurveIrm";
-export type { Metamorpho } from "./Metamorpho";
-export type { Metamorphofactory } from "./Metamorphofactory";
-export type { MorphoBlue } from "./MorphoBlue";
+export type { MetaLQG } from "./MetaLQG";
+export type { MetaLQGfactory } from "./MetaLQGfactory";
+export type { LQGBlue } from "./LQGBlue";
 export * as factories from "./factories";
 export { AdaptiveCurveIrm__factory } from "./factories/AdaptiveCurveIrm__factory";
-export { Metamorpho__factory } from "./factories/Metamorpho__factory";
-export { Metamorphofactory__factory } from "./factories/MetaMorphoFactory__factory";
-export { MorphoBlue__factory } from "./factories/MorphoBlue__factory";
+export { MetaLQG__factory } from "./factories/MetaLQG__factory";
+export { MetaLQGfactory__factory } from "./factories/MetaLQGFactory__factory";
+export { LQGBlue__factory } from "./factories/LQGBlue__factory";

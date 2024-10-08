@@ -55,12 +55,12 @@ export type MarketAllocationStructOutput = [
   assets: bigint
 ] & { marketParams: MarketParamsStructOutput; assets: bigint };
 
-export interface MetamorphoInterface extends Interface {
+export interface MetaLQGInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "DECIMALS_OFFSET"
       | "DOMAIN_SEPARATOR"
-      | "MORPHO"
+      | "LQG"
       | "acceptCap"
       | "acceptGuardian"
       | "acceptOwnership"
@@ -175,7 +175,7 @@ export interface MetamorphoInterface extends Interface {
     functionFragment: "DOMAIN_SEPARATOR",
     values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: "MORPHO", values?: undefined): string;
+  encodeFunctionData(functionFragment: "LQG", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "acceptCap",
     values: [MarketParamsStruct]
@@ -437,7 +437,7 @@ export interface MetamorphoInterface extends Interface {
     functionFragment: "DOMAIN_SEPARATOR",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "MORPHO", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "LQG", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "acceptCap", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "acceptGuardian",
@@ -1085,11 +1085,11 @@ export namespace WithdrawEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface Metamorpho extends BaseContract {
-  connect(runner?: ContractRunner | null): Metamorpho;
+export interface MetaLQG extends BaseContract {
+  connect(runner?: ContractRunner | null): MetaLQG;
   waitForDeployment(): Promise<this>;
 
-  interface: MetamorphoInterface;
+  interface: MetaLQGInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -1132,7 +1132,7 @@ export interface Metamorpho extends BaseContract {
 
   DOMAIN_SEPARATOR: TypedContractMethod<[], [string], "view">;
 
-  MORPHO: TypedContractMethod<[], [string], "view">;
+  LQG: TypedContractMethod<[], [string], "view">;
 
   acceptCap: TypedContractMethod<
     [marketParams: MarketParamsStruct],
@@ -1433,7 +1433,7 @@ export interface Metamorpho extends BaseContract {
     nameOrSignature: "DOMAIN_SEPARATOR"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
-    nameOrSignature: "MORPHO"
+    nameOrSignature: "LQG"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "acceptCap"

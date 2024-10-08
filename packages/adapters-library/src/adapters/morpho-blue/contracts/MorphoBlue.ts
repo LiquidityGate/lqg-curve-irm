@@ -75,7 +75,7 @@ export type SignatureStructOutput = [v: bigint, r: string, s: string] & {
   s: string;
 };
 
-export interface MorphoBlueInterface extends Interface {
+export interface LQGBlueInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "DOMAIN_SEPARATOR"
@@ -707,11 +707,11 @@ export namespace WithdrawCollateralEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface MorphoBlue extends BaseContract {
-  connect(runner?: ContractRunner | null): MorphoBlue;
+export interface LQGBlue extends BaseContract {
+  connect(runner?: ContractRunner | null): LQGBlue;
   waitForDeployment(): Promise<this>;
 
-  interface: MorphoBlueInterface;
+  interface: LQGBlueInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,

@@ -3,11 +3,11 @@
   "aggregatedValues": ["USD660,263.55"],
   "snapshot": [
     {
-      "protocolId": "morpho-blue",
-      "name": "MetaMorpho Vaults",
-      "description": "MetaMorpho Vaults adapter",
-      "siteUrl": "https://app.morpho.org/",
-      "iconUrl": "https://cdn.morpho.org/images/v2/morpho/favicon.png",
+      "protocolId": "LQG-blue",
+      "name": "MetaLQG Vaults",
+      "description": "MetaLQG Vaults adapter",
+      "siteUrl": "https://app.LQG.org/",
+      "iconUrl": "https://cdn.LQG.org/images/v2/LQG/favicon.png",
       "positionType": "supply",
       "chainId": 1,
       "productId": "vault",

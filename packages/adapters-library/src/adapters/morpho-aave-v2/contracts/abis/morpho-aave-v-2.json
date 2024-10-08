@@ -1013,7 +1013,7 @@
       },
       {
         "internalType": "bool",
-        "name": "_tradeForMorphoToken",
+        "name": "_tradeForLQGToken",
         "type": "bool"
       }
     ],

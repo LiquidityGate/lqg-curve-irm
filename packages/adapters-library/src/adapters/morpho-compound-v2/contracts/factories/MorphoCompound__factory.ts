@@ -4,9 +4,9 @@
 
 import { Contract, Interface, type ContractRunner } from "ethers";
 import type {
-  MorphoCompound,
-  MorphoCompoundInterface,
-} from "../MorphoCompound";
+  LQGCompound,
+  LQGCompoundInterface,
+} from "../LQGCompound";
 
 const _abi = [
   {
@@ -1099,7 +1099,7 @@ const _abi = [
       },
       {
         internalType: "bool",
-        name: "_tradeForMorphoToken",
+        name: "_tradeForLQGToken",
         type: "bool",
       },
     ],
@@ -2297,15 +2297,15 @@ const _abi = [
   },
 ] as const;
 
-export class MorphoCompound__factory {
+export class LQGCompound__factory {
   static readonly abi = _abi;
-  static createInterface(): MorphoCompoundInterface {
-    return new Interface(_abi) as MorphoCompoundInterface;
+  static createInterface(): LQGCompoundInterface {
+    return new Interface(_abi) as LQGCompoundInterface;
   }
   static connect(
     address: string,
     runner?: ContractRunner | null
-  ): MorphoCompound {
-    return new Contract(address, _abi, runner) as unknown as MorphoCompound;
+  ): LQGCompound {
+    return new Contract(address, _abi, runner) as unknown as LQGCompound;
   }
 }

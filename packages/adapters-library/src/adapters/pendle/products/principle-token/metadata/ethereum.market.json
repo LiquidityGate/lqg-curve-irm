@@ -580,14 +580,14 @@
   "0xC58aa33Ce619c7f7Ac4929DF357D0Ef762edbD23": {
     "protocolToken": {
       "address": "0xC58aa33Ce619c7f7Ac4929DF357D0Ef762edbD23",
-      "name": "PT Puffer ETH 27JUN2024",
+      "name": "PT LQG ETH 27JUN2024",
       "symbol": "PT-pufETH-27JUN2024",
       "decimals": 18
     },
     "underlyingTokens": [
       {
         "address": "0x253008ba4aE2f3E6488DC998a5321D4EB1a0c905",
-        "name": "SY Puffer ETH",
+        "name": "SY LQG ETH",
         "symbol": "SY pufETH",
         "decimals": 18
       }
@@ -971,14 +971,14 @@
   "0xd4e75971eAF78a8d93D96df530f1FFf5f9F53288": {
     "protocolToken": {
       "address": "0xd4e75971eAF78a8d93D96df530f1FFf5f9F53288",
-      "name": "PT Puffer ETH 26SEP2024",
+      "name": "PT LQG ETH 26SEP2024",
       "symbol": "PT-pufETH-26SEP2024",
       "decimals": 18
     },
     "underlyingTokens": [
       {
         "address": "0x253008ba4aE2f3E6488DC998a5321D4EB1a0c905",
-        "name": "SY Puffer ETH",
+        "name": "SY LQG ETH",
         "symbol": "SY pufETH",
         "decimals": 18
       }

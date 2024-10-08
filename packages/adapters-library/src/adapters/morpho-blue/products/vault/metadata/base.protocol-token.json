@@ -2,7 +2,7 @@
   "0xED0A7A49f2228E01a3169C4A5a72a2EbFE8756Dc": {
     "protocolToken": {
       "address": "0xED0A7A49f2228E01a3169C4A5a72a2EbFE8756Dc",
-      "name": "MetaMorpho Test",
+      "name": "MetaLQG Test",
       "symbol": "MMT",
       "decimals": 18
     },
@@ -240,7 +240,7 @@
   "0x8c3A6B12332a6354805Eb4b72ef619aEdd22BcdD": {
     "protocolToken": {
       "address": "0x8c3A6B12332a6354805Eb4b72ef619aEdd22BcdD",
-      "name": "Morpho Degen",
+      "name": "LQG Degen",
       "symbol": "mDEGEN",
       "decimals": 18
     },
@@ -254,7 +254,7 @@
   "0x30B8A2c8E7Fa41e77b54b8FaF45c610e7aD909E3": {
     "protocolToken": {
       "address": "0x30B8A2c8E7Fa41e77b54b8FaF45c610e7aD909E3",
-      "name": "Morpho MAI",
+      "name": "LQG MAI",
       "symbol": "mMAI",
       "decimals": 18
     },
@@ -366,7 +366,7 @@
   "0xbb819D845b573B5D7C538F5b85057160cfb5f313": {
     "protocolToken": {
       "address": "0xbb819D845b573B5D7C538F5b85057160cfb5f313",
-      "name": "Morpho eUSD",
+      "name": "LQG eUSD",
       "symbol": "meUSD",
       "decimals": 18
     },
@@ -380,7 +380,7 @@
   "0x6C0d2A9194f00d0121f21253268683644D3d267D": {
     "protocolToken": {
       "address": "0x6C0d2A9194f00d0121f21253268683644D3d267D",
-      "name": "jEURMetaMorpho",
+      "name": "jEURMetaLQG",
       "symbol": "jEURMM",
       "decimals": 18
     },
@@ -394,7 +394,7 @@
   "0x4DbD80F8029d5264fAC0b57A16Ac54de512be45A": {
     "protocolToken": {
       "address": "0x4DbD80F8029d5264fAC0b57A16Ac54de512be45A",
-      "name": "EuroMetaMorpho",
+      "name": "EuroMetaLQG",
       "symbol": "EURMM",
       "decimals": 18
     },
@@ -408,7 +408,7 @@
   "0x305a22602d0f6BCd14aDcC59555A36b0c9c3d76d": {
     "protocolToken": {
       "address": "0x305a22602d0f6BCd14aDcC59555A36b0c9c3d76d",
-      "name": "testMetaMorphoUSDC",
+      "name": "testMetaLQGUSDC",
       "symbol": "testMMUSDC",
       "decimals": 18
     },

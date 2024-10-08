@@ -28,18 +28,18 @@ import { Erc20Metadata } from '../../../types/erc20Metadata'
 import {
   AToken__factory,
   AaveV3Pool__factory,
-  MorphoAaveV3__factory,
-} from '../../morpho-aave-v2/contracts'
-import { SuppliedEvent } from '../../morpho-aave-v2/contracts/MorphoAaveV3'
+  LQGAaveV3__factory,
+} from '../../LQG-aave-v2/contracts'
+import { SuppliedEvent } from '../../LQG-aave-v2/contracts/LQGAaveV3'
 import {
   TypedContractEvent,
   TypedDeferredTopicFilter,
-} from '../../morpho-aave-v2/contracts/common'
+} from '../../LQG-aave-v2/contracts/common'
 import { Protocol } from '../../protocols'
-import { MorphoAaveMath } from '../internal-utils/AaveV3.maths'
+import { LQGAaveMath } from '../internal-utils/AaveV3.maths'
 import P2PInterestRates from '../internal-utils/P2PInterestRates'
 
-type MorphoAaveV3PeerToPoolAdapterMetadata = Record<
+type LQGAaveV3PeerToPoolAdapterMetadata = Record<
   string,
   {
     protocolToken: Erc20Metadata
@@ -47,15 +47,15 @@ type MorphoAaveV3PeerToPoolAdapterMetadata = Record<
   }
 >
 
-const morphoAaveV3ContractAddresses: Partial<
+const LQGAaveV3ContractAddresses: Partial<
   Record<Protocol, Partial<Record<Chain, string>>>
 > = {
-  [Protocol.MorphoAaveV3]: {
+  [Protocol.LQGAaveV3]: {
     [Chain.Ethereum]: getAddress('0x33333aea097c193e66081e930c33020272b33333'),
   },
 }
 
-export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
+export abstract class LQGBasePoolAdapter implements IMetadataBuilder {
   protocolId: Protocol
   chainId: Chain
 
@@ -74,7 +74,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
   }
 
   __IRM__ = new P2PInterestRates()
-  __MATH__ = new MorphoAaveMath()
+  __MATH__ = new LQGAaveMath()
   oracleAddress = getAddress('0xA50ba011c48153De246E5192C8f9258A2ba79Ca9')
   poolAddress = getAddress('0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2')
 
@@ -83,18 +83,18 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
   abstract getProtocolDetails(): ProtocolDetails
 
   async buildMetadata() {
-    const morphoAaveV3Contract = MorphoAaveV3__factory.connect(
-      morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGAaveV3Contract = LQGAaveV3__factory.connect(
+      LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
-    const metadataObject: MorphoAaveV3PeerToPoolAdapterMetadata = {}
+    const metadataObject: LQGAaveV3PeerToPoolAdapterMetadata = {}
 
-    const markets = await morphoAaveV3Contract.marketsCreated()
+    const markets = await LQGAaveV3Contract.marketsCreated()
     const positionType = this.getProtocolDetails().positionType
     await Promise.all(
       markets.map(async (marketAddress) => {
-        // Morpho AaveV3-ETH Optimizer allows a borrow only on WETH
+        // LQG AaveV3-ETH Optimizer allows a borrow only on WETH
         if (positionType === PositionType.Borrow) {
           const [protocolToken, underlyingToken] = await Promise.all([
             getTokenMetadata(
@@ -206,8 +206,8 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     userAddress,
     blockNumber,
   }: GetPositionsInput): Promise<ProtocolPosition[]> {
-    const morphoAaveV3 = MorphoAaveV3__factory.connect(
-      morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGAaveV3 = LQGAaveV3__factory.connect(
+      LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
@@ -222,16 +222,16 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
       let balanceRaw: bigint
       if (positionType === PositionType.Supply) {
         const [supplyBalance, collateralBalance] = await Promise.all([
-          morphoAaveV3.supplyBalance(market.address, userAddress, {
+          LQGAaveV3.supplyBalance(market.address, userAddress, {
             blockTag: blockNumber,
           }),
-          morphoAaveV3.collateralBalance(market.address, userAddress, {
+          LQGAaveV3.collateralBalance(market.address, userAddress, {
             blockTag: blockNumber,
           }),
         ])
         balanceRaw = supplyBalance + collateralBalance
       } else {
-        balanceRaw = await morphoAaveV3.borrowBalance(
+        balanceRaw = await LQGAaveV3.borrowBalance(
           market.address,
           userAddress,
           {
@@ -382,8 +382,8 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
   }: GetTotalValueLockedInput): Promise<ProtocolTokenTvl[]> {
     const tokens = await this.getProtocolTokens()
 
-    const morphoAaveV3 = MorphoAaveV3__factory.connect(
-      morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGAaveV3 = LQGAaveV3__factory.connect(
+      LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
@@ -407,7 +407,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
             },
             { liquidityIndex, variableBorrowIndex },
           ] = await Promise.all([
-            morphoAaveV3.market(underlyingToken.address, {
+            LQGAaveV3.market(underlyingToken.address, {
               blockTag: blockNumber,
             }),
             pool.getReserveData(underlyingToken.address, {
@@ -418,7 +418,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
           const aToken = AToken__factory.connect(aTokenAddress, this.provider)
 
           const supplyOnPool = await aToken.balanceOf(
-            morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+            LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
             {
               blockTag: blockNumber,
             },
@@ -473,7 +473,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
             },
             { liquidityIndex, variableBorrowIndex },
           ] = await Promise.all([
-            morphoAaveV3.market(underlyingToken.address, {
+            LQGAaveV3.market(underlyingToken.address, {
               blockTag: blockNumber,
             }),
             pool.getReserveData(underlyingToken.address, {
@@ -487,7 +487,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
           )
 
           const borrowOnPool = await variableDebtToken.balanceOf(
-            morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+            LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
             {
               blockTag: blockNumber,
             },
@@ -564,8 +564,8 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
       | 'repaid'
       | 'borrowed'
   }): Promise<MovementsByBlock[]> {
-    const morphoAaveV3Contract = MorphoAaveV3__factory.connect(
-      morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+    const LQGAaveV3Contract = LQGAaveV3__factory.connect(
+      LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
       this.provider,
     )
 
@@ -583,21 +583,21 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
     >
     switch (eventType) {
       case 'supplied':
-        filter = morphoAaveV3Contract.filters.Supplied(
+        filter = LQGAaveV3Contract.filters.Supplied(
           undefined,
           userAddress,
           underlyingToken?.address,
         )
         break
       case 'collat-supplied':
-        filter = morphoAaveV3Contract.filters.CollateralSupplied(
+        filter = LQGAaveV3Contract.filters.CollateralSupplied(
           undefined,
           userAddress,
           underlyingToken?.address,
         )
         break
       case 'withdrawn':
-        filter = morphoAaveV3Contract.filters.Withdrawn(
+        filter = LQGAaveV3Contract.filters.Withdrawn(
           undefined,
           userAddress,
           undefined,
@@ -605,7 +605,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
         )
         break
       case 'collat-withdrawn':
-        filter = morphoAaveV3Contract.filters.CollateralWithdrawn(
+        filter = LQGAaveV3Contract.filters.CollateralWithdrawn(
           undefined,
           userAddress,
           undefined,
@@ -613,14 +613,14 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
         )
         break
       case 'repaid':
-        filter = morphoAaveV3Contract.filters.Repaid(
+        filter = LQGAaveV3Contract.filters.Repaid(
           undefined,
           userAddress,
           underlyingToken?.address,
         )
         break
       case 'borrowed':
-        filter = morphoAaveV3Contract.filters.Borrowed(
+        filter = LQGAaveV3Contract.filters.Borrowed(
           undefined,
           userAddress,
           undefined,
@@ -629,7 +629,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
         break
     }
 
-    const eventResults = await morphoAaveV3Contract.queryFilter(
+    const eventResults = await LQGAaveV3Contract.queryFilter(
       filter,
       fromBlock,
       toBlock,
@@ -695,8 +695,8 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //   protocolTokenAddress,
 //   blockNumber,
 // }: GetAprInput): Promise<number> {
-//   const morphoAaveV3 = MorphoAaveV3__factory.connect(
-//     morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+//   const LQGAaveV3 = LQGAaveV3__factory.connect(
+//     LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
 //     this.provider,
 //   )
 
@@ -726,7 +726,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //         variableBorrowIndex,
 //       },
 //     ] = await Promise.all([
-//       morphoAaveV3.market(underlyingToken.address, {
+//       LQGAaveV3.market(underlyingToken.address, {
 //         blockTag: blockNumber,
 //       }),
 //       pool.getReserveData(underlyingToken.address, {
@@ -737,7 +737,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //     const aToken = AToken__factory.connect(aTokenAddress, this.provider)
 
 //     const supplyOnPool = await aToken.balanceOf(
-//       morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+//       LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
 //       {
 //         blockTag: blockNumber,
 //       },
@@ -817,7 +817,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //         variableBorrowIndex,
 //       },
 //     ] = await Promise.all([
-//       morphoAaveV3.market(underlyingToken.address, {
+//       LQGAaveV3.market(underlyingToken.address, {
 //         blockTag: blockNumber,
 //       }),
 //       pool.getReserveData(underlyingToken.address, {
@@ -831,7 +831,7 @@ export abstract class MorphoBasePoolAdapter implements IMetadataBuilder {
 //     )
 
 //     const borrowOnPool = await variableDebtToken.balanceOf(
-//       morphoAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
+//       LQGAaveV3ContractAddresses[this.protocolId]![this.chainId]!,
 //       {
 //         blockTag: blockNumber,
 //       },

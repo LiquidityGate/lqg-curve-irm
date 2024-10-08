@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_morpho",
+        "name": "_LQG",
         "type": "address"
       }
     ],
@@ -1237,10 +1237,10 @@
   },
   {
     "inputs": [],
-    "name": "morpho",
+    "name": "LQG",
     "outputs": [
       {
-        "internalType": "contract IMorpho",
+        "internalType": "contract ILQG",
         "name": "",
         "type": "address"
       }

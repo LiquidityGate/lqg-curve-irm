@@ -1296,8 +1296,8 @@
     },
     "collateralToken": {
       "address": "0xAb122ae30b3eE050F0Eb30009DEec6aCC6B06D36",
-      "name": "Staked TricryptoUSDT Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDTWBTCWETH-morpho",
+      "name": "Staked TricryptoUSDT Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDTWBTCWETH-LQG",
       "decimals": 18
     }
   },
@@ -1317,8 +1317,8 @@
     },
     "collateralToken": {
       "address": "0x517068E51009e0e5E2a25f91e04837e66414D8Ac",
-      "name": "Staked TricryptoUSDC Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDCWBTCWETH-morpho",
+      "name": "Staked TricryptoUSDC Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDCWBTCWETH-LQG",
       "decimals": 18
     }
   },
@@ -1338,8 +1338,8 @@
     },
     "collateralToken": {
       "address": "0x19f8F160F4d0077d8527324544B5c68E883Dd592",
-      "name": "Staked TricryptoLLAMA Convex Deposit Morpho",
-      "symbol": "stkcvxcrvCRVUSDTBTCWSTETH-morpho",
+      "name": "Staked TricryptoLLAMA Convex Deposit LQG",
+      "symbol": "stkcvxcrvCRVUSDTBTCWSTETH-LQG",
       "decimals": 18
     }
   },
@@ -1359,8 +1359,8 @@
     },
     "collateralToken": {
       "address": "0xa461249dB0C9f91de3d43582468b9DC0E712664d",
-      "name": "Staked TryLSD Convex Deposit Morpho",
-      "symbol": "stkcvxTryLSD-morpho",
+      "name": "Staked TryLSD Convex Deposit LQG",
+      "symbol": "stkcvxTryLSD-LQG",
       "decimals": 18
     }
   },
@@ -1380,8 +1380,8 @@
     },
     "collateralToken": {
       "address": "0x7086288478ce9dF52862b5E88eD18d232e9a5213",
-      "name": "Staked TriCRV Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDETHCRV-morpho",
+      "name": "Staked TriCRV Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDETHCRV-LQG",
       "decimals": 18
     }
   },
@@ -1464,8 +1464,8 @@
     },
     "collateralToken": {
       "address": "0xb0Ce26C88e4e7DCa51968b6047f44646f5064278",
-      "name": "Staked TricryptoUSDT Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDTWBTCWETH-morpho",
+      "name": "Staked TricryptoUSDT Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDTWBTCWETH-LQG",
       "decimals": 18
     }
   },
@@ -1674,8 +1674,8 @@
     },
     "collateralToken": {
       "address": "0x0ea1a65A2c255f24Ee8D81eA6AaC54Decd9d269e",
-      "name": "Staked TricryptoUSDC Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDCWBTCWETH-morpho",
+      "name": "Staked TricryptoUSDC Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDCWBTCWETH-LQG",
       "decimals": 18
     }
   },
@@ -1695,8 +1695,8 @@
     },
     "collateralToken": {
       "address": "0x3ce8Ec9f3d89aD0A2DdbCC3FDB8991BD241Fc82E",
-      "name": "Staked TricryptoLLAMA Convex Deposit Morpho",
-      "symbol": "stkcvxcrvCRVUSDTBTCWSTETH-morpho",
+      "name": "Staked TricryptoLLAMA Convex Deposit LQG",
+      "symbol": "stkcvxcrvCRVUSDTBTCWSTETH-LQG",
       "decimals": 18
     }
   },
@@ -1716,8 +1716,8 @@
     },
     "collateralToken": {
       "address": "0x6BA072F0d22806F2C52e9792AF47f2D59103BEBE",
-      "name": "Staked TryLSD Convex Deposit Morpho",
-      "symbol": "stkcvxTryLSD-morpho",
+      "name": "Staked TryLSD Convex Deposit LQG",
+      "symbol": "stkcvxTryLSD-LQG",
       "decimals": 18
     }
   },
@@ -1737,8 +1737,8 @@
     },
     "collateralToken": {
       "address": "0xAc904BAfBb5FB04Deb2b6198FdCEedE75a78Ce5a",
-      "name": "Staked TriCRV Convex Deposit Morpho",
-      "symbol": "stkcvxcrvUSDETHCRV-morpho",
+      "name": "Staked TriCRV Convex Deposit LQG",
+      "symbol": "stkcvxcrvUSDETHCRV-LQG",
       "decimals": 18
     }
   },
@@ -2913,8 +2913,8 @@
     },
     "collateralToken": {
       "address": "0x6f471267d09953f27F983Cfe17556eFf3e3b2DFB",
-      "name": "Staked Curve.fi Factory Plain Pool: tBTC/WBTC Convex Deposit Morpho",
-      "symbol": "stkcvx2BTC-f-morpho",
+      "name": "Staked Curve.fi Factory Plain Pool: tBTC/WBTC Convex Deposit LQG",
+      "symbol": "stkcvx2BTC-f-LQG",
       "decimals": 18
     }
   },
@@ -2934,8 +2934,8 @@
     },
     "collateralToken": {
       "address": "0x385E12cf4040543Bc8C18e05C1298Be5B04f3f5e",
-      "name": "Staked Curve.fi Factory Plain Pool: tBTC/WBTC Convex Deposit Morpho",
-      "symbol": "stkcvx2BTC-f-morpho",
+      "name": "Staked Curve.fi Factory Plain Pool: tBTC/WBTC Convex Deposit LQG",
+      "symbol": "stkcvx2BTC-f-LQG",
       "decimals": 18
     }
   },

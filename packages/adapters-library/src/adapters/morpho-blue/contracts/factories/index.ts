@@ -2,6 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export { AdaptiveCurveIrm__factory } from "./AdaptiveCurveIrm__factory";
-export { Metamorpho__factory } from "./Metamorpho__factory";
-export { Metamorphofactory__factory } from "./MetaMorphoFactory__factory";
-export { MorphoBlue__factory } from "./MorphoBlue__factory";
+export { MetaLQG__factory } from "./MetaLQG__factory";
+export { MetaLQGfactory__factory } from "./MetaLQGFactory__factory";
+export { LQGBlue__factory } from "./LQGBlue__factory";

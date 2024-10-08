@@ -4,9 +4,9 @@ import {
   PositionType,
   ProtocolDetails,
 } from '../../../../types/adapter'
-import { MorphoBasePoolAdapter } from '../../common/morphoBasePoolAdapter'
+import { LQGBasePoolAdapter } from '../../common/LQGBasePoolAdapter'
 
-export class MorphoCompoundV2OptimizerSupplyAdapter extends MorphoBasePoolAdapter {
+export class LQGCompoundV2OptimizerSupplyAdapter extends LQGBasePoolAdapter {
   productId = 'optimizer-supply'
 
   adapterSettings = {
@@ -17,10 +17,10 @@ export class MorphoCompoundV2OptimizerSupplyAdapter extends MorphoBasePoolAdapte
   getProtocolDetails(): ProtocolDetails {
     return {
       protocolId: this.protocolId,
-      name: 'MorphoCompoundV2',
-      description: 'MorphoCompoundV2 defi adapter on the supply side',
-      siteUrl: 'https://compound.morpho.org/',
-      iconUrl: 'https://cdn.morpho.org/images/v2/morpho/favicon.png',
+      name: 'LQGCompoundV2',
+      description: 'LQGCompoundV2 defi adapter on the supply side',
+      siteUrl: 'https://compound.LQG.org/',
+      iconUrl: 'https://cdn.LQG.org/images/v2/LQG/favicon.png',
       positionType: PositionType.Supply,
       chainId: this.chainId,
       productId: this.productId,
